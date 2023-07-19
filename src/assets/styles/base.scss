@@ -1,0 +1,50 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  vertical-align: baseline;
+}
+
+body {
+  font-weight: normal;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.sb-main-centered.sb-show-main {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  border: 0;
+  outline: none;
+}
+
+input {
+  outline: none;
+}
+
+form {
+  width: 100%;
+}
