@@ -1,13 +1,8 @@
 import { FC } from 'react';
-import { CreateAccount } from 'pages';
+import { Router } from 'router';
 
 import 'assets/styles/main.scss';
 
 interface AppProps {}
 
-export const App: FC<AppProps> = () => (
-  <>
-    <CreateAccount />
-    {/* <Login /> */}
-  </>
-);
+export const App: FC<AppProps> = () => <Router />;

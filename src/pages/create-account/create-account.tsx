@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Icons, Input, Password, Typography } from 'ai-ui-kit/lib/components';
 import { TopBar } from 'layout';
 import { useForm } from 'react-hook-form';
@@ -35,9 +36,11 @@ const CreateAccount: FC<CreateAccountProps> = () => {
           <TopBar
             leftElement={<Icons size={40} name="logo" color="red" />}
             rightElement={
-              <Typography size={16} lineHeight={24} weight={500} color="--webkit-blue-green" linearGradients>
-                Log In
-              </Typography>
+              <Link to="/login">
+                <Typography size={16} lineHeight={24} weight={500} color="--webkit-blue-green" linearGradients>
+                  Log In
+                </Typography>
+              </Link>
             }
           />
           <form className={cls['content-body']} onSubmit={handleSubmit(onSubmit)}>
