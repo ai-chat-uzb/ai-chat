@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icons, Input, Password, Typography } from 'ai-ui-kit/lib/components';
 import { TopBar } from 'layout';
-import { LoginAuth } from 'modules/login/form/login-auth';
+import { Form } from 'modules/login';
 
 import loginImage from 'assets/images/login/login.svg';
 
@@ -15,7 +15,7 @@ const Login: FC<LoginProps> = () => (
     <div className={cls.container}>
       <div className={cls.left}>
         <TopBar
-          leftElement={<Icons size={40} name="logo" color="red" />}
+          leftElement={<Icons size={40} name="logo" color="--color-heisenberg-5" />}
           rightElement={
             <Link to="/sign-up">
               <Typography size={16} lineHeight={24} weight={500} color="--webkit-blue-green" linearGradients>
@@ -24,7 +24,7 @@ const Login: FC<LoginProps> = () => (
             </Link>
           }
         />
-        <LoginAuth defaultValues={{ firstName: '', password: '' }}>
+        <Form.LoginAuth defaultValues={{ firstName: '', password: '' }}>
           {({ control, formState: { errors } }) => (
             <div className={cls['content-body']}>
               <div className={cls.text}>
@@ -79,7 +79,7 @@ const Login: FC<LoginProps> = () => (
               </Button>
             </div>
           )}
-        </LoginAuth>
+        </Form.LoginAuth>
         <TopBar
           leftElement={
             <Typography size={14} weight={500} lineHeight={20} spacing={0.15} color="--color-black-3">

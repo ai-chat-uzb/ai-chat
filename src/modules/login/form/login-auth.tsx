@@ -12,7 +12,7 @@ interface LoginAuthProps {
   defaultValues?: IForm.ILoginAuth;
 }
 
-export const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) => {
+const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) => {
   const data = useForm<IForm.ILoginAuth>({ defaultValues, resolver: yupResolver(loginSchema) });
 
   const onSubmit: SubmitHandler<IForm.ILoginAuth> = (e: any) => {
@@ -21,3 +21,5 @@ export const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSucce
 
   return <form onSubmit={data.handleSubmit(onSubmit)}>{children(data)}</form>;
 };
+
+export default LoginAuth;

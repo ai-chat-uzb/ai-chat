@@ -1,0 +1,20 @@
+.wrapper {
+  display: block;
+  height: calc(100vh - 24px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+  .chat-input {
+    height: 96px;
+    width: 100%;
+    background: var(--color-black-8);
+    border-radius: 24px;
+  }
+  :global(.ant-tabs-content-holder) {
+    height: calc(100vh - 88px - 96px);
+    overflow-y: auto;
+  }
+}

@@ -8,12 +8,12 @@ const getCharacterValidationError = (str: string) => `Your password must have at
 export const createAccountSchema = yup.object().shape({
   firstName: yup.string().required('First name must be entered').trim(),
   lastName: yup.string().required('Last name must be entered').trim(),
-  // email: yup
-  //   .string()
-  //   .email('Invalid email')
-  //   .matches(EMAIL_REGEX, 'Invalid email address')
-  //   .required('Email is required')
-  //   .trim(),
+  email: yup
+    .string()
+    .email('Invalid email')
+    .matches(EMAIL_REGEX, 'Invalid email address')
+    .required('Email is required')
+    .trim(),
   password: yup
     .string()
     .required('Password is required')

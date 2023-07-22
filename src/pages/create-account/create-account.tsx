@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icons, Input, Password, Typography } from 'ai-ui-kit/lib/components';
 import { TopBar } from 'layout';
-import { CreateAccountAuth } from 'modules/create-account/form/create-account-auth';
+import { Form } from 'modules/create-account';
 
 import rightImage from 'assets/images/login/Illustration.svg';
 
@@ -15,7 +15,7 @@ const CreateAccount: FC<CreateAccountProps> = () => (
     <div className={cls.container}>
       <div className={cls.left}>
         <TopBar
-          leftElement={<Icons size={40} name="logo" color="red" />}
+          leftElement={<Icons size={40} name="logo" color="--color-heisenberg-5" />}
           rightElement={
             <Link to="/login">
               <Typography size={16} lineHeight={24} weight={500} color="--webkit-blue-green" linearGradients>
@@ -24,7 +24,9 @@ const CreateAccount: FC<CreateAccountProps> = () => (
             </Link>
           }
         />
-        <CreateAccountAuth defaultValues={{ firstName: '', lastName: '', password: '', resetPassword: '' }}>
+        <Form.CreateAccountAuth
+          defaultValues={{ firstName: '', lastName: '', password: '', resetPassword: '', email: '' }}
+        >
           {({ control, formState: { errors } }) => (
             <div className={cls['content-body']}>
               <div className={cls.card}>
@@ -61,6 +63,17 @@ const CreateAccount: FC<CreateAccountProps> = () => (
                   label="Reset Password"
                 />
               </div>
+              <div className={cls.card}>
+                <Input
+                  control={control}
+                  errorMsg={errors.email?.message}
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  label="Email"
+                />
+                <div />
+              </div>
               <div className={cls['card-check']}>
                 <Icons size={24} name="checkSquare" />
                 <div className={cls.text}>
@@ -77,7 +90,7 @@ const CreateAccount: FC<CreateAccountProps> = () => (
               </Button>
             </div>
           )}
-        </CreateAccountAuth>
+        </Form.CreateAccountAuth>
         <TopBar
           leftElement={
             <Typography size={14} weight={500} lineHeight={20} spacing={0.15} color="--color-black-3">
