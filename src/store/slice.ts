@@ -5,12 +5,14 @@ interface SliceProps {
   user: Types.IForm.IUser | null;
   isLogined: boolean;
   isAuthenticated: boolean;
+  accessToken: string;
 }
 
 const initialState: SliceProps = {
   user: null,
   isLogined: false,
-  isAuthenticated: false
+  isAuthenticated: false,
+  accessToken: ''
 };
 
 const slice = createSlice({
@@ -20,7 +22,7 @@ const slice = createSlice({
     loginUser(state: SliceProps, { payload }: PayloadAction<{ user: Types.IForm.IUser }>) {
       state.user = payload.user;
     },
-    isAuthenticated(state: SliceProps) {
+    isAuthenticatedChange(state: SliceProps) {
       state.isLogined = true;
       state.isAuthenticated = true;
     },
@@ -28,14 +30,14 @@ const slice = createSlice({
       state.user = null;
       state.isLogined = false;
       state.isAuthenticated = false;
+    },
+    changeToken(state: SliceProps, { payload }: PayloadAction<{ accessToken: string }>) {
+      state.accessToken = payload.accessToken;
     }
-    // changeToken(auth: SliceProps, { payload }: PayloadAction<IForm.ICreateAccount['accessToken']>) {
-    //   auth.accessToken = payload || '';
-    // }
   }
 });
 
-export const { loginUser, isAuthenticated, isReset } = slice.actions;
+export const { loginUser, isAuthenticatedChange, isReset, changeToken } = slice.actions;
 
 // Selectors
 

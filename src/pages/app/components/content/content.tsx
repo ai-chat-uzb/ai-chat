@@ -44,7 +44,7 @@ const Content: FC<ContentProps> = () => {
 
   return (
     <div className={cls.wrapper}>
-      {/* <button onClick={() => reset()}>reset</button> */}
+      <button onClick={() => reset()}>reset</button>
       <Tabs items={items} activeKey={activeKeys} onChange={tab => setActiveKeys(tab)} />
       <div className={cls['chat-input']} />
     </div>

@@ -11,6 +11,5 @@ export namespace IForm {
   export interface IUser {
     firstName: string;
     email: string;
-    accessToken: string;
   }
 }

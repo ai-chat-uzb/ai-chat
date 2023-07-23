@@ -1,33 +1,58 @@
-import { FC, ReactNode } from 'react';
+import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'ai-ui-kit/lib/components';
+import axios from 'axios';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { loginUser } from 'store/slice';
 
+import { useAuth } from '../hook';
 import { IForm } from '../type';
 
 import { createAccountSchema } from './schema';
 
 interface CreateAccountAuthProps {
-  onSuccess?: (data: IForm.ICreateAccount) => void;
+  onSuccess: Dispatch<SetStateAction<boolean>>;
   children: (data: UseFormReturn<IForm.ICreateAccount>) => ReactNode;
   defaultValues?: IForm.ICreateAccount;
 }
 
-const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues = {} }) => {
+const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues = {}, onSuccess }) => {
   const data = useForm<IForm.ICreateAccount>({ resolver: yupResolver(createAccountSchema), defaultValues });
-  const dispatch = useDispatch();
+  const { login } = useAuth();
 
   const onSubmit: SubmitHandler<IForm.ICreateAccount> = e => {
-    dispatch(
-      loginUser({
-        user: {
-          firstName: e.firstName,
-          email: e.email,
-          accessToken: '4aa6a0445da16849aec6757b0232f25c9e0fbfbb25a0d54a209be1b4a92c42e7af2f156050b92b0efaa1c'
-        }
-      })
-    );
+    const res = async () => {
+      try {
+        const user = await axios.post(
+          'https://www.2wo1ne.uz/api/v1/registration/',
+          {
+            username: e.firstName,
+            email: e.email,
+            password: e.password
+          },
+          {
+            headers: {
+              'Access-Control-Allow-Origin': 'http://localhost:3000',
+              'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Headers':
+                'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
+            }
+          }
+        );
+
+        login(user.data?.username, user.data?.email);
+        toast.success('Success');
+        onSuccess(true);
+      } catch (err) {
+        console.log(err);
+        // @ts-ignore
+        toast.error(err?.message);
+      }
+    };
+
+    res();
+
+    // onSuccess(true);
   };
 
   return <form onSubmit={data.handleSubmit(onSubmit)}>{children(data)}</form>;

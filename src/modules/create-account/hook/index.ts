@@ -1,2 +1,2 @@
 export { default as useAuth } from './use-auth';
-export { default as useAuthQuery } from './use-auth-query';
+export { default as AuthQuery } from './use-auth-query';
