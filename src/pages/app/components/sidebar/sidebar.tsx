@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import { Typography } from 'ai-ui-kit/lib/components';
 import useAuth from 'modules/create-account/hook/use-auth';
 
+import { User } from './components';
+
 import cls from './sidebar.module.scss';
 
 interface SidebarProps {}
@@ -11,6 +13,7 @@ const Sidebar: FC<SidebarProps> = () => {
 
   return (
     <div className={cls.wrapper}>
+      <User />
       <Typography size={20} lineHeight={24} color="--color-heisenberg-5" weight={600}>
         {user?.firstName}
       </Typography>

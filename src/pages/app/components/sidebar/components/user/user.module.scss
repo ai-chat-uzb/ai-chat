@@ -1,0 +1,22 @@
+.wrapper {
+  width: 100%;
+  :global(.custom-user-settings-btn) {
+    svg {
+      transition: all linear 0.225s;
+    }
+    path {
+      transition: all linear 0.225s;
+    }
+    &:hover {
+      svg {
+        transition: all linear 0.225s;
+        color: var(--color-green-5);
+        box-shadow: none;
+      }
+      path {
+        transition: all linear 0.225s;
+        filter: drop-shadow(0px 4px 6px rgba(182, 240, 156, 0.16)) drop-shadow(0px 10px 15px rgba(182, 240, 156, 0.16));
+      }
+    }
+  }
+}
