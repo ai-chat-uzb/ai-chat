@@ -4431,10 +4431,10 @@ aggregate-error@^4.0.0, aggregate-error@^4.0.1:
     clean-stack "^4.0.0"
     indent-string "^5.0.0"
 
-ai-ui-kit@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.12.tgz#083073df44c521ae90289fde808774675b4625bc"
-  integrity sha512-3pG1Q3xhx4UCCQ39wnS9BXUABnUN+dd8OJzC/9n2+/hxXEfMz7Ydrr4ZF6MjtkhkGHAHwVOHZst41dasO/H4kg==
+ai-ui-kit@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.14.tgz#f65c0eeea177e8e15ca3ca47ab5c7e44395878ca"
+  integrity sha512-pxAAobgStFn/lG1pDKyJEnKC+PbMR6fObMz4GvB3kpgTvsxzGa5SetkguUhowWOYxlCN80YE1OwsqHBmJ3lfqQ==
 
 ajv-formats@^2.1.1:
   version "2.1.1"

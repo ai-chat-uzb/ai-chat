@@ -8,8 +8,11 @@ export namespace IForm {
     accessToken?: string;
   };
   // back
+
   export interface IUser {
     firstName: string;
     email: string;
+    avatarUrl: string;
+    username: string;
   }
 }

@@ -2,17 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Types } from 'modules/create-account';
 
 interface SliceProps {
-  user: Types.IForm.IUser | null;
+  user: Types.IForm.IUser;
   isLogined: boolean;
   isAuthenticated: boolean;
   accessToken: string;
+  settingsModal: boolean;
+  firstUsernameModal: boolean;
 }
 
 const initialState: SliceProps = {
-  user: null,
+  user: {
+    firstName: '',
+    email: '',
+    avatarUrl: '',
+    username: ''
+  },
   isLogined: false,
   isAuthenticated: false,
-  accessToken: ''
+  accessToken: '',
+  settingsModal: true,
+  firstUsernameModal: false
 };
 
 const slice = createSlice({
@@ -27,22 +36,50 @@ const slice = createSlice({
       state.isAuthenticated = true;
     },
     isReset(state: SliceProps) {
-      state.user = null;
+      state.user = {
+        firstName: '',
+        email: '',
+        avatarUrl: '',
+        username: ''
+      };
       state.isLogined = false;
       state.isAuthenticated = false;
     },
     changeToken(state: SliceProps, { payload }: PayloadAction<{ accessToken: string }>) {
       state.accessToken = payload.accessToken;
+    },
+    avatarUrlChange(state: SliceProps, { payload }: PayloadAction<{ avatarUrl: Types.IForm.IUser['avatarUrl'] }>) {
+      state.user = { ...state.user, avatarUrl: payload.avatarUrl };
+    },
+    usernameChange(state: SliceProps, { payload }: PayloadAction<{ username: Types.IForm.IUser['username'] }>) {
+      state.user = { ...state.user, username: payload.username };
+    },
+    settingsModalChange(state: SliceProps) {
+      state.settingsModal = !state.settingsModal;
+    },
+    firstUsernameChange(state: SliceProps) {
+      state.firstUsernameModal = true;
     }
   }
 });
 
-export const { loginUser, isAuthenticatedChange, isReset, changeToken } = slice.actions;
+export const {
+  loginUser,
+  isAuthenticatedChange,
+  isReset,
+  changeToken,
+  avatarUrlChange,
+  settingsModalChange,
+  firstUsernameChange,
+  usernameChange
+} = slice.actions;
 
 // Selectors
 
 export const getUser = (store: SliceProps) => store.user;
 export const getIsLogined = (store: SliceProps) => store.isLogined;
 export const getIsAuthenticated = (store: SliceProps) => store.isAuthenticated;
+export const getIsSettingsModal = (store: SliceProps) => store.settingsModal;
+export const getIsFirstUsernameHandler = (store: SliceProps) => store.firstUsernameModal;
 
 export default slice.reducer;

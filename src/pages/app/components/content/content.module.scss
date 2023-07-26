@@ -16,5 +16,8 @@
   :global(.ant-tabs-content-holder) {
     height: calc(100vh - 88px - 96px);
     overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

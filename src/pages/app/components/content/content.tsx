@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { Icons, Tabs } from 'ai-ui-kit/lib/components';
-import { useAuth } from 'modules/create-account/hook';
 
 import Chat from '../chat/chat';
 
@@ -9,7 +8,6 @@ import cls from './content.module.scss';
 interface ContentProps {}
 
 const Content: FC<ContentProps> = () => {
-  const { reset } = useAuth();
   const [activeKeys, setActiveKeys] = useState('2');
 
   const items = [

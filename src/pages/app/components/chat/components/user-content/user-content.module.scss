@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  :global(.icon_wrapper) {
+    color: var(--color-white) !important;
+  }
+}

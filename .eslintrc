@@ -115,6 +115,8 @@
       }
     ],
     "react/jsx-filename-extension": [0],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "error"
   }
 }
