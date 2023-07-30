@@ -27,7 +27,7 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
         await axios.post(
           'https://www.2wo1ne.uz/api/v1/verification/',
           {
-            username: user?.firstName,
+            email: user?.email,
             ver_code: e.verCode
           },
           {

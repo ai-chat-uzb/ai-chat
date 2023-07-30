@@ -1,6 +1,6 @@
 export namespace IForm {
   export type ILoginAuth = {
-    firstName: string;
+    email: string;
     password: string;
   };
 }

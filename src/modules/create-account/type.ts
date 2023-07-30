@@ -13,6 +13,8 @@ export namespace IForm {
     firstName: string;
     email: string;
     avatarUrl: string;
+    lastName: string;
     username: string;
+    id: number;
   }
 }

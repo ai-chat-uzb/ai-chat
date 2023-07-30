@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Typography } from 'ai-ui-kit/lib/components';
+import { Button, Typography } from 'ai-ui-kit/lib/components';
 import useAuth from 'modules/create-account/hook/use-auth';
 
 import { User } from './components';
@@ -13,6 +13,9 @@ const Sidebar: FC<SidebarProps> = () => {
 
   return (
     <div className={cls.wrapper}>
+      <Button size="medium" colorView="full" view="glass" htmlType="button" width="100%" onClick={() => reset()}>
+        Reset
+      </Button>
       <User />
       <Typography size={20} lineHeight={24} color="--color-heisenberg-5" weight={600}>
         {user?.firstName}

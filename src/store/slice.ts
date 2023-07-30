@@ -13,9 +13,11 @@ interface SliceProps {
 const initialState: SliceProps = {
   user: {
     firstName: '',
+    lastName: '',
     email: '',
     avatarUrl: '',
-    username: ''
+    username: '',
+    id: NaN
   },
   isLogined: false,
   isAuthenticated: false,
@@ -40,7 +42,9 @@ const slice = createSlice({
         firstName: '',
         email: '',
         avatarUrl: '',
-        username: ''
+        lastName: '',
+        username: '',
+        id: NaN
       };
       state.isLogined = false;
       state.isAuthenticated = false;
@@ -81,5 +85,6 @@ export const getIsLogined = (store: SliceProps) => store.isLogined;
 export const getIsAuthenticated = (store: SliceProps) => store.isAuthenticated;
 export const getIsSettingsModal = (store: SliceProps) => store.settingsModal;
 export const getIsFirstUsernameHandler = (store: SliceProps) => store.firstUsernameModal;
+export const getIsAccessToken = (store: SliceProps) => store.accessToken;
 
 export default slice.reducer;

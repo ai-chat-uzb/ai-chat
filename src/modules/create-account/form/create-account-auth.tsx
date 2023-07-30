@@ -25,7 +25,8 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
         const user = await axios.post(
           'https://www.2wo1ne.uz/api/v1/registration/',
           {
-            username: e.firstName,
+            first_name: e.firstName,
+            last_name: e.lastName,
             email: e.email,
             password: e.password
           },
@@ -40,7 +41,14 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
           }
         );
 
-        login(user.data?.username, user.data?.email);
+        login({
+          firstName: user.data.first_name,
+          email: user.data.email,
+          avatarUrl: '',
+          lastName: user.data.last_name,
+          username: '',
+          id: user.data.id
+        });
         toast.success('Success');
         onSuccess(true);
       } catch (err) {
@@ -51,8 +59,6 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
     };
 
     res();
-
-    // onSuccess(true);
   };
 
   return <form onSubmit={data.handleSubmit(onSubmit)}>{children(data)}</form>;

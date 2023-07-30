@@ -16,7 +16,14 @@ const AuthQuery = (data: IForm.ICreateAccount) => {
       });
 
       console.log('user', user);
-      login(user.data?.username, user.data?.email);
+      login({
+        firstName: user.data.first_name,
+        email: user.data.email,
+        avatarUrl: '',
+        lastName: user.data.last_name,
+        username: '',
+        id: user.data.id
+      });
       toast.success('Success');
     } catch (err) {
       console.log(err);

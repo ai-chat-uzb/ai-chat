@@ -24,7 +24,7 @@ const Login: FC<LoginProps> = () => (
             </Link>
           }
         />
-        <Form.LoginAuth defaultValues={{ firstName: '', password: '' }}>
+        <Form.LoginAuth defaultValues={{ email: '', password: '' }}>
           {({ control, formState: { errors } }) => (
             <div className={cls['content-body']}>
               <div className={cls.text}>
@@ -47,11 +47,11 @@ const Login: FC<LoginProps> = () => (
               <div className={cls.card}>
                 <Input
                   control={control}
-                  errorMsg={errors.firstName?.message}
+                  errorMsg={errors.email?.message}
                   type="text"
-                  name="firstName"
-                  placeholder="First name"
-                  label="First name"
+                  name="email"
+                  placeholder="Email"
+                  label="Email"
                 />
               </div>
               <div className={cls.card}>

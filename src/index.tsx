@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from 'store/store';
 
-import { App } from './app';
+import { App } from './App';
 
 // import 'antd/dist/reset.css';
 import 'ai-ui-kit/lib/globals.css';

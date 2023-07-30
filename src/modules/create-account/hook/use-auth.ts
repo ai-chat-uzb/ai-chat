@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { Types } from 'modules/create-account';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   avatarUrlChange,
   changeToken,
   firstUsernameChange,
+  getIsAccessToken,
   getIsAuthenticated,
   getIsFirstUsernameHandler,
   getIsLogined,
@@ -23,21 +25,17 @@ const useAuth = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const isSettingsModal = useSelector(getIsSettingsModal);
   const isFirstUsernameModal = useSelector(getIsFirstUsernameHandler);
+  const isAccessToken = useSelector(getIsAccessToken);
   const navigate = useNavigate();
   const reset = () => {
     dispatch(isReset());
     navigate('/');
   };
 
-  const login = (firstName: string, email: 'string') => {
+  const login = (user: Types.IForm.IUser) => {
     dispatch(
       loginUser({
-        user: {
-          firstName,
-          email,
-          avatarUrl: '',
-          username: ''
-        }
+        user
       })
     );
   };
@@ -78,7 +76,8 @@ const useAuth = () => {
     isSettingsModal,
     firstUsernameHandler,
     isFirstUsernameModal,
-    usernameHandler
+    usernameHandler,
+    isAccessToken
   };
 };
 

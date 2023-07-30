@@ -27,7 +27,10 @@ const User: FC<UserProps> = () => {
         title={user?.firstName}
         username={`@${user?.username}`}
         status={undefined}
-        url={user.avatarUrl}
+        url={
+          user.avatarUrl ||
+          'https://firebasestorage.googleapis.com/v0/b/ai-chat-c50cc.appspot.com/o/avatar-img-1.png?alt=media&token=46ff28a4-e707-477f-b1d4-a646e61b67c4'
+        }
       />
     </div>
   );
