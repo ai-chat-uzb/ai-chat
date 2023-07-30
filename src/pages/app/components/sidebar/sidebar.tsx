@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Typography } from 'ai-ui-kit/lib/components';
-import useAuth from 'modules/create-account/hook/use-auth';
+
+import { useAuth } from 'hooks';
 
 import { User } from './components';
 

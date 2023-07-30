@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import useAuth from 'modules/create-account/hook/use-auth';
 import { useDispatch } from 'react-redux';
+
+import { useAuth } from 'hooks';
 // import { isAuthenticated } from 'store/slice';
 
 const useAuthToken = () => {

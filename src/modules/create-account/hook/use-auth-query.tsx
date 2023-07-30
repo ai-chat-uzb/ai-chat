@@ -1,9 +1,9 @@
 import { toast } from 'ai-ui-kit/lib/components';
 import axios from 'axios';
 
-import { IForm } from '../type';
+import { useAuth } from 'hooks';
 
-import useAuth from './use-auth';
+import { IForm } from '../type';
 
 const AuthQuery = (data: IForm.ICreateAccount) => {
   const { login } = useAuth();

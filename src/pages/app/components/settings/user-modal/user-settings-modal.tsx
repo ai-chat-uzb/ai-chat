@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { Avatar, Button, Input, Modal, Typography } from 'ai-ui-kit/lib/components';
 import { AVATAR_DATA } from 'helpers/constants';
-import { useAuth } from 'modules/create-account/hook';
 import { UserSettingsForm } from 'modules/user-settings-modal';
+
+import { useAuth } from 'hooks';
 
 import cls from './user-settings-modal.module.scss';
 

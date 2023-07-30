@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { UserContent as BaseUserContent } from 'ai-ui-kit/lib/components';
 import { CONTENT_PRIVATE_CHAT } from 'helpers/constants';
-import { useAuth } from 'modules/create-account/hook';
+
+import { useAuth } from 'hooks';
 
 import cls from './user-content.module.scss';
 

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Button, UserList } from 'ai-ui-kit/lib/components';
-import { useAuth } from 'modules/create-account/hook';
+
+import { useAuth } from 'hooks';
 
 import cls from './user.module.scss';
 

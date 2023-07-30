@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useAuth } from 'modules/create-account/hook';
 import { App, CreateAccount, Login } from 'pages';
+
+import { useAuth } from 'hooks';
 
 import ProtectRouter from './protect-router';
 

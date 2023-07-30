@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
 import axios from 'axios';
-import { useAuth } from 'modules/create-account/hook';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
+
+import { useAuth } from 'hooks';
 
 import { IForm } from '../type';
 

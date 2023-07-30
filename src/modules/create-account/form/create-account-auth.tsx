@@ -4,7 +4,8 @@ import { toast } from 'ai-ui-kit/lib/components';
 import axios from 'axios';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
 
-import { useAuth } from '../hook';
+import { useAuth } from 'hooks';
+
 import { IForm } from '../type';
 
 import { createAccountSchema } from './schema';

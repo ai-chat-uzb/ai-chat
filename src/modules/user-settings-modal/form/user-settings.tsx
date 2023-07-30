@@ -1,7 +1,8 @@
 import { FC, ReactNode } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAuth } from 'modules/create-account/hook';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
+
+import { useAuth } from 'hooks';
 
 import { IForm } from '../type';
 
