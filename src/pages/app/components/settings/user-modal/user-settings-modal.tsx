@@ -15,7 +15,7 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
   return (
     <div>
       <Modal
-        open={isSettingsModal}
+        open={isSettingsModal || !user.username}
         onCancel={() => {
           if (isFirstUsernameModal) {
             settingsModalHandler();

@@ -48,12 +48,12 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
           avatarUrl: '',
           lastName: user.data.last_name,
           username: '',
-          id: user.data.id
+          id: user.data.id,
+          password: e.password
         });
         toast.success('Success');
         onSuccess(true);
       } catch (err) {
-        console.log(err);
         // @ts-ignore
         toast.error(err?.message);
       }

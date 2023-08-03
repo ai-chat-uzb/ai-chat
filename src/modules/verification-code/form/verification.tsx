@@ -19,41 +19,62 @@ interface VerificationProps {
 
 const Verification: FC<VerificationProps> = ({ defaultValues, children, onSuccess }) => {
   const data = useForm<IVerification.FormVerification>({ defaultValues, resolver: yupResolver(verificationSchema) });
-  const { user, authenticated } = useAuth();
+  const { user, authenticated, token, isAuthenticated, login } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IVerification.FormVerification> = async (e: any) => {
-    const res = async () => {
-      try {
-        await axios.post(
-          'https://www.2wo1ne.uz/api/v1/verification/',
-          {
-            email: user?.email,
-            ver_code: e.verCode
-          },
-          {
-            headers: {
-              'Access-Control-Allow-Origin': 'http://localhost:3000',
-              'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Headers':
-                'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
-            }
+    try {
+      await axios.post(
+        'https://www.2wo1ne.uz/api/v1/verification/',
+        {
+          email: user?.email,
+          ver_code: e.verCode
+        },
+        {
+          headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers':
+              'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
           }
-        );
+        }
+      );
 
-        toast.success('Success');
+      toast.success('Success');
 
-        navigate('/');
-        authenticated();
-      } catch (err) {
-        console.log(err);
-        // @ts-ignore
-        toast.error(err?.message);
-      }
-    };
+      navigate('/');
+      authenticated();
+    } catch (err) {
+      // @ts-ignore
+      toast.error(err?.message);
+    }
 
-    res();
+    try {
+      const data = await axios.post(
+        'https://www.2wo1ne.uz/api/v1/token/',
+        {
+          email: user.email,
+          password: user.password
+        },
+        {
+          headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers':
+              'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
+          }
+        }
+      );
+
+      token(data.data.access);
+      toast.success('Success');
+    } catch (err) {
+      // @ts-ignore
+      toast.error(err?.message);
+    }
+    login({ ...user, password: '' });
   };
 
   return <form onSubmit={data.handleSubmit(onSubmit)}>{children(data)}</form>;

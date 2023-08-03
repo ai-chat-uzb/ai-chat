@@ -17,12 +17,13 @@ const initialState: SliceProps = {
     email: '',
     avatarUrl: '',
     username: '',
-    id: NaN
+    id: NaN,
+    password: ''
   },
   isLogined: false,
   isAuthenticated: false,
   accessToken: '',
-  settingsModal: true,
+  settingsModal: false,
   firstUsernameModal: false
 };
 
@@ -44,14 +45,17 @@ const slice = createSlice({
         avatarUrl: '',
         lastName: '',
         username: '',
-        id: NaN
+        id: NaN,
+        password: ''
       };
+      state.accessToken = '';
       state.isLogined = false;
       state.isAuthenticated = false;
     },
     changeToken(state: SliceProps, { payload }: PayloadAction<{ accessToken: string }>) {
       state.accessToken = payload.accessToken;
     },
+
     avatarUrlChange(state: SliceProps, { payload }: PayloadAction<{ avatarUrl: Types.IForm.IUser['avatarUrl'] }>) {
       state.user = { ...state.user, avatarUrl: payload.avatarUrl };
     },

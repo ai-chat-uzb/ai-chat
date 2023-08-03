@@ -22,7 +22,8 @@ const AuthQuery = (data: IForm.ICreateAccount) => {
         avatarUrl: '',
         lastName: user.data.last_name,
         username: '',
-        id: user.data.id
+        id: user.data.id,
+        password: ''
       });
       toast.success('Success');
     } catch (err) {

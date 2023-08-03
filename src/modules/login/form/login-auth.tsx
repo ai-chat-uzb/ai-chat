@@ -42,11 +42,9 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
           }
         );
 
-        console.log(user.data);
         token(user.data.access);
         toast.success('Success');
       } catch (err) {
-        console.log(err);
         // @ts-ignore
         toast.error(err?.message);
       }
@@ -55,7 +53,6 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
     res();
 
     const response = async () => {
-      console.log(isAccessToken);
       try {
         const user = await axios.get('https://www.2wo1ne.uz/api/v1/user_detail/', {
           headers: {
@@ -63,20 +60,18 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
           }
         });
 
-        console.log(user);
-
         login({
           firstName: user.data.first_name,
           email: user.data.email,
-          avatarUrl: '',
+          avatarUrl: user.data.photo_url || '',
           lastName: user.data.last_name,
-          username: '',
-          id: user.data.id
+          username: user.data.username || '',
+          id: user.data.id,
+          password: ''
         });
         toast.success('Success');
         navigate('/');
       } catch (err) {
-        console.log(err);
         // @ts-ignore
         toast.error(err?.message);
       }

@@ -16,5 +16,6 @@ export namespace IForm {
     lastName: string;
     username: string;
     id: number;
+    password: string;
   }
 }
