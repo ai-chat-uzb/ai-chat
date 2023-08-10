@@ -19,65 +19,60 @@ interface LoginAuthProps {
 
 const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) => {
   const data = useForm<IForm.ILoginAuth>({ defaultValues, resolver: yupResolver(loginSchema) });
-  const { token, login, isAccessToken } = useAuth();
+  const { token, login } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IForm.ILoginAuth> = (e: any) => {
-    const res = async () => {
-      try {
-        const user = await axios.post(
-          'https://www.2wo1ne.uz/api/v1/token/',
-          {
-            email: e.email,
-            password: e.password
-          },
-          {
-            headers: {
-              'Access-Control-Allow-Origin': 'http://localhost:3000',
-              'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Headers':
-                'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
-            }
-          }
-        );
+  const onSubmit: SubmitHandler<IForm.ILoginAuth> = async (e: any) => {
+    let tokens;
 
-        token(user.data.access);
-        toast.success('Success');
-      } catch (err) {
-        // @ts-ignore
-        toast.error(err?.message);
-      }
-    };
-
-    res();
-
-    const response = async () => {
-      try {
-        const user = await axios.get('https://www.2wo1ne.uz/api/v1/user_detail/', {
+    try {
+      const user = await axios.post(
+        'https://www.2wo1ne.uz/api/v1/token/',
+        {
+          email: e.email,
+          password: e.password
+        },
+        {
           headers: {
-            Authorization: `Bearer ${isAccessToken}`
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers':
+              'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
           }
-        });
+        }
+      );
 
-        login({
-          firstName: user.data.first_name,
-          email: user.data.email,
-          avatarUrl: user.data.photo_url || '',
-          lastName: user.data.last_name,
-          username: user.data.username || '',
-          id: user.data.id,
-          password: ''
-        });
-        toast.success('Success');
-        navigate('/');
-      } catch (err) {
-        // @ts-ignore
-        toast.error(err?.message);
-      }
-    };
+      token(user.data.access);
+      tokens = user.data.access;
+      toast.success('Success');
+    } catch (err) {
+      // @ts-ignore
+      toast.error(err?.message);
+    }
 
-    response();
+    try {
+      const user = await axios.get('https://www.2wo1ne.uz/api/v1/user_detail/', {
+        headers: {
+          Authorization: `Bearer ${tokens}`
+        }
+      });
+
+      login({
+        firstName: user.data.first_name,
+        email: user.data.email,
+        avatarUrl: user.data.photo_url || '',
+        lastName: user.data.last_name,
+        username: user.data.username || '',
+        id: user.data.id,
+        password: ''
+      });
+      toast.success('Success');
+      navigate('/');
+    } catch (err) {
+      // @ts-ignore
+      toast.error(err?.message);
+    }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions

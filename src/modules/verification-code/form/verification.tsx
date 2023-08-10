@@ -49,7 +49,6 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
       // @ts-ignore
       toast.error(err?.message);
     }
-
     try {
       const data = await axios.post(
         'https://www.2wo1ne.uz/api/v1/token/',
