@@ -18,4 +18,12 @@ export namespace IForm {
     id: number;
     password: string;
   }
+  export interface IUserReturn {
+    first_name: string;
+    email: string;
+    last_name: string;
+    username: string;
+    id: number;
+    photo_url: string;
+  }
 }

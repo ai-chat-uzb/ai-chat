@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import axios from 'axios';
+import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
 
 import { useAuth } from 'hooks';
@@ -32,11 +32,7 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
         },
         {
           headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers':
-              'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
+            'Content-Type': 'application/json'
           }
         }
       );

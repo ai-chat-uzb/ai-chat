@@ -3,7 +3,7 @@ import { Button, Typography } from 'ai-ui-kit/lib/components';
 
 import { useAuth } from 'hooks';
 
-import { User } from './components';
+import { SearchBar, User } from './components';
 
 import cls from './sidebar.module.scss';
 
@@ -21,6 +21,7 @@ const Sidebar: FC<SidebarProps> = () => {
       <Typography size={20} lineHeight={24} color="--color-heisenberg-5" weight={600}>
         {user?.firstName}
       </Typography>
+      <SearchBar />
     </div>
   );
 };
