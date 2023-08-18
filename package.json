@@ -5,6 +5,8 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^4.32.6",
+    "@tanstack/react-query-devtools": "^4.32.6",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -13,7 +15,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "ai-ui-kit": "^1.0.14",
+    "ai-ui-kit": "^1.0.17",
     "antd": "^5.7.1",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",

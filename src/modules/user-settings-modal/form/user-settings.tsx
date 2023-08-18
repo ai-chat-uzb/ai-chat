@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import axios from 'axios';
+import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
 
 import { useAuth } from 'hooks';
@@ -24,7 +24,7 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, onSucces
     const res = async () => {
       try {
         const users = await axios.put(
-          'https://www.2wo1ne.uz/api/v1/username_reset/',
+          '/username_reset/',
           {
             username: e.username,
             photo_url: user.avatarUrl

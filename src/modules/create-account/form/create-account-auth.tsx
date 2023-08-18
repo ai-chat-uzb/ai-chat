@@ -1,7 +1,7 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import axios from 'axios';
+import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
 
 import { useAuth } from 'hooks';
@@ -24,7 +24,7 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
     const res = async () => {
       try {
         const user = await axios.post(
-          'https://www.2wo1ne.uz/api/v1/registration/',
+          '/registration/',
           {
             first_name: e.firstName,
             last_name: e.lastName,
@@ -33,8 +33,6 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
           },
           {
             headers: {
-              'Access-Control-Allow-Origin': 'http://localhost:3000',
-              'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
               'Content-Type': 'application/json',
               'Access-Control-Allow-Headers':
                 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'

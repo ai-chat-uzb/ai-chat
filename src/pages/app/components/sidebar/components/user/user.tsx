@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, UserList } from 'ai-ui-kit/lib/components';
+import { Button, UserCard } from 'ai-ui-kit/lib/components';
 
 import { useAuth } from 'hooks';
 
@@ -12,7 +12,7 @@ const User: FC<UserProps> = () => {
 
   return (
     <div className={cls.wrapper}>
-      <UserList
+      <UserCard
         rightElement={
           <Button
             iconName="settings"
@@ -27,7 +27,8 @@ const User: FC<UserProps> = () => {
         }
         title={user?.firstName}
         username={`@${user?.username}`}
-        status={undefined}
+        status="off"
+        size=""
         url={
           user.avatarUrl ||
           'https://firebasestorage.googleapis.com/v0/b/ai-chat-c50cc.appspot.com/o/avatar-img-1.png?alt=media&token=46ff28a4-e707-477f-b1d4-a646e61b67c4'
