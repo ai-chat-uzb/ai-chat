@@ -32,8 +32,6 @@ const SearchBar: FC<SearchBarProps> = () => {
   }, [open]);
   useEffect(() => {}, [watch('search')]);
 
-  console.log(isLoading, console.log(data));
-
   return (
     <div className={cls.wrapper}>
       <Modal title="Search Bar" footer={false} open={open} onCancel={() => setOpen(!open)}>

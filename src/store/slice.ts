@@ -6,6 +6,7 @@ interface SliceProps {
   isLogined: boolean;
   isAuthenticated: boolean;
   accessToken: string;
+  refreshToken: string;
   settingsModal: boolean;
   firstUsernameModal: boolean;
 }
@@ -23,6 +24,7 @@ const initialState: SliceProps = {
   isLogined: false,
   isAuthenticated: false,
   accessToken: '',
+  refreshToken: '',
   settingsModal: false,
   firstUsernameModal: false
 };
@@ -49,11 +51,13 @@ const slice = createSlice({
         password: ''
       };
       state.accessToken = '';
+      state.refreshToken = '';
       state.isLogined = false;
       state.isAuthenticated = false;
     },
-    changeToken(state: SliceProps, { payload }: PayloadAction<{ accessToken: string }>) {
+    changeToken(state: SliceProps, { payload }: PayloadAction<{ accessToken: string; refreshToken?: string }>) {
       state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken || state.refreshToken;
     },
 
     avatarUrlChange(state: SliceProps, { payload }: PayloadAction<{ avatarUrl: Types.IForm.IUser['avatarUrl'] }>) {
@@ -90,5 +94,6 @@ export const getIsAuthenticated = (store: SliceProps) => store.isAuthenticated;
 export const getIsSettingsModal = (store: SliceProps) => store.settingsModal;
 export const getIsFirstUsernameHandler = (store: SliceProps) => store.firstUsernameModal;
 export const getIsAccessToken = (store: SliceProps) => store.accessToken;
+export const getIsRefreshToken = (store: SliceProps) => store.refreshToken;
 
 export default slice.reducer;

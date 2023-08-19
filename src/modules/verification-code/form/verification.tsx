@@ -19,13 +19,13 @@ interface VerificationProps {
 
 const Verification: FC<VerificationProps> = ({ defaultValues, children, onSuccess }) => {
   const data = useForm<IVerification.FormVerification>({ defaultValues, resolver: yupResolver(verificationSchema) });
-  const { user, authenticated, token, isAuthenticated, login } = useAuth();
+  const { user, authenticated, token, login } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IVerification.FormVerification> = async (e: any) => {
     try {
       await axios.post(
-        'https://www.2wo1ne.uz/api/v1/verification/',
+        '/verification/',
         {
           email: user?.email,
           ver_code: e.verCode
@@ -47,15 +47,13 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
     }
     try {
       const data = await axios.post(
-        'https://www.2wo1ne.uz/api/v1/token/',
+        '/token/',
         {
           email: user.email,
           password: user.password
         },
         {
           headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Headers':
               'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
@@ -63,7 +61,7 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
         }
       );
 
-      token(data.data.access);
+      token(data.data.access, data.data.refresh);
       toast.success('Success');
     } catch (err) {
       // @ts-ignore

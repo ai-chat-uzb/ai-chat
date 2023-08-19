@@ -21,7 +21,7 @@ const useRefetch = ({ email, password }: { email: string; password: string }) =>
         }
       );
 
-      token(user.data.access);
+      token(user.data.access, user.data.refresh);
       toast.success('Success');
     } catch (err) {
       // @ts-ignore

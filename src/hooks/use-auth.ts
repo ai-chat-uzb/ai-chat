@@ -9,6 +9,7 @@ import {
   getIsAuthenticated,
   getIsFirstUsernameHandler,
   getIsLogined,
+  getIsRefreshToken,
   getIsSettingsModal,
   getUser,
   isAuthenticatedChange,
@@ -26,6 +27,7 @@ const useAuth = () => {
   const isSettingsModal = useSelector(getIsSettingsModal);
   const isFirstUsernameModal = useSelector(getIsFirstUsernameHandler);
   const isAccessToken = useSelector(getIsAccessToken);
+  const isRefreshToken = useSelector(getIsRefreshToken);
   const navigate = useNavigate();
   const reset = () => {
     dispatch(isReset());
@@ -40,8 +42,8 @@ const useAuth = () => {
     );
   };
 
-  const token = (token: string) => {
-    dispatch(changeToken({ accessToken: token }));
+  const token = (access: string, refresh?: string) => {
+    dispatch(changeToken({ accessToken: access, refreshToken: refresh }));
   };
 
   const authenticated = () => {
@@ -77,7 +79,8 @@ const useAuth = () => {
     firstUsernameHandler,
     isFirstUsernameModal,
     usernameHandler,
-    isAccessToken
+    isAccessToken,
+    isRefreshToken
   };
 };
 

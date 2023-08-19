@@ -1,10 +1,11 @@
 import { FC, ReactNode } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
 
 import { useAuth } from 'hooks';
+import useAxiosPrivate from 'hooks/use-axios-private';
 
 import { IForm } from '../type';
 
@@ -16,37 +17,35 @@ interface UserSettingsProps {
   onSuccess?: (data: IForm.IUserSettings) => void;
 }
 
-const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, onSuccess }) => {
+const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
   const data = useForm({ defaultValues, resolver: yupResolver(userSettings) });
-  const { usernameHandler, firstUsernameHandler, user, isAccessToken } = useAuth();
+  const { usernameHandler, firstUsernameHandler, user } = useAuth();
 
   const onSubmit: SubmitHandler<IForm.IUserSettings> = (e: any) => {
     const res = async () => {
       try {
-        const users = await axios.put(
-          '/username_reset/',
-          {
-            username: e.username,
-            photo_url: user.avatarUrl
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${isAccessToken}`
-            }
-          }
-        );
+        const users = await axiosPrivate.put('/username_reset/', {
+          username: e.username,
+          photo_url: user.avatarUrl
+        });
 
+        toast.success('Successfully updated');
         usernameHandler(users.data.username);
       } catch (err) {
         // @ts-ignore
         toast.error(err?.message);
+        navigate('/login', { state: { from: location }, replace: true });
       }
     };
 
     res();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    !user.username && firstUsernameHandler();
+    if (!user.username) {
+      firstUsernameHandler();
+    }
 
     data.reset();
   };

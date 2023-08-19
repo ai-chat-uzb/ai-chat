@@ -38,7 +38,7 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
           }
         );
 
-        token(user.data.access);
+        token(user.data.access, user.data.refresh);
         login({
           firstName: user.data.first_name,
           email: user.data.email,
