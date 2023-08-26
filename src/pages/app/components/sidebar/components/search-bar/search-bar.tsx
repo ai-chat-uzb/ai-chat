@@ -5,16 +5,13 @@ import { Types } from 'modules/search-bar';
 import useSearch from 'modules/search-bar/hooks/useSearch';
 import { useForm } from 'react-hook-form';
 
-import { useAuth } from 'hooks';
-
 import cls from './search-bar.module.scss';
 
 interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = () => {
-  const { isAccessToken } = useAuth();
   const { control, watch } = useForm<Types.SearchProps>({ defaultValues: { search: '' } });
-  const { data, isLoading } = useSearch({ keyword: watch('search'), isAccessToken });
+  const { users, isLoading } = useSearch({ keyword: watch('search') });
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -29,8 +26,7 @@ const SearchBar: FC<SearchBarProps> = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [open]);
-  useEffect(() => {}, [watch('search')]);
+  }, [open, watch('search')]);
 
   return (
     <div className={cls.wrapper}>
@@ -42,8 +38,8 @@ const SearchBar: FC<SearchBarProps> = () => {
           <div className={cls['search-list']}>
             {!isLoading ? (
               <div className={cls.lists}>
-                {data && data.length > 0 ? (
-                  data.map((item: any) => (
+                {users?.length > 0 ? (
+                  users.map((item: any) => (
                     <UserCard
                       key={item.id}
                       url={item.photo_url}
