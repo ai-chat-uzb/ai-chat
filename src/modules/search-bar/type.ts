@@ -1,5 +1,7 @@
-export interface SearchProps {
-  search: string;
+export namespace IForm {
+  export interface SearchProps {
+    search: string;
+  }
 }
 
 export namespace IEntity {
@@ -29,7 +31,9 @@ export namespace IQuery {
 }
 
 export namespace IApi {
-  export interface ISearchRequest extends IQuery.IQueryRequest {}
+  export interface ISearchRequest {
+    keyword: string;
+  }
   export interface ISearchResponse {
     users: {
       id: number;

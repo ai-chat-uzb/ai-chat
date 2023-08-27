@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Types } from 'modules/create-account';
+import { Types as TypesUserSettingsModal } from 'modules/user-settings-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   avatarUrlChange,
@@ -60,8 +61,8 @@ const useAuth = () => {
     dispatch(firstUsernameChange());
   };
 
-  const usernameHandler = (username: string) => {
-    dispatch(usernameChange({ username }));
+  const usernameHandler = ({ username, avatarUrl }: TypesUserSettingsModal.IEntity.UserSettingsModal) => {
+    dispatch(usernameChange({ username, avatarUrl }));
   };
 
   return {

@@ -10,7 +10,7 @@ import cls from './search-bar.module.scss';
 interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = () => {
-  const { control, watch } = useForm<Types.SearchProps>({ defaultValues: { search: '' } });
+  const { control, watch } = useForm<Types.IForm.SearchProps>({ defaultValues: { search: '' } });
   const { users, isLoading } = useSearch({ keyword: watch('search') });
   const [open, setOpen] = useState(false);
 

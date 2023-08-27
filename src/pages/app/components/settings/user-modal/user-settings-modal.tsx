@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Avatar, Button, Input, Modal, Typography } from 'ai-ui-kit/lib/components';
 import { AVATAR_DATA } from 'helpers/constants';
 import { UserSettingsForm } from 'modules/user-settings-modal';
@@ -10,14 +10,15 @@ import cls from './user-settings-modal.module.scss';
 interface UserSettingsModalProps {}
 
 const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalProps) => {
-  const { user, avatarUrlHandler, isSettingsModal, settingsModalHandler, isFirstUsernameModal } = useAuth();
+  const { user, isSettingsModal, settingsModalHandler, isFirstUsernameModal } = useAuth();
+  const [url, setUrl] = useState(user.avatarUrl || '');
 
   return (
     <div>
       <Modal
         open={isSettingsModal || !user.username}
         onCancel={() => {
-          if (isFirstUsernameModal) {
+          if (isFirstUsernameModal || user.username) {
             settingsModalHandler();
           }
         }}
@@ -36,11 +37,8 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(0, 8).map(item => (
-              <div key={item.id} onClick={() => avatarUrlHandler(item.avatarUrl)}>
-                {
-                  // @ts-ignore
-                  <Avatar url={item.avatarUrl} status={user.avatarUrl === item.avatarUrl && 'active'} />
-                }
+              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
+                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>
@@ -57,8 +55,8 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(8, 16).map(item => (
-              <div key={item.id} onClick={() => avatarUrlHandler(item.avatarUrl)}>
-                <Avatar url={item.avatarUrl} status={user.avatarUrl === item.avatarUrl ? 'active' : undefined} />
+              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
+                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>
@@ -69,13 +67,13 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(16, 24).map(item => (
-              <div key={item.id} onClick={() => avatarUrlHandler(item.avatarUrl)}>
-                <Avatar url={item.avatarUrl} status={user.avatarUrl === item.avatarUrl ? 'active' : undefined} />
+              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
+                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>
         </div>
-        <UserSettingsForm.UserSettings defaultValues={{ username: '' }}>
+        <UserSettingsForm.UserSettings url={url} defaultValues={{ username: '' }}>
           {({ control, formState: { errors } }) => (
             <div>
               <Input

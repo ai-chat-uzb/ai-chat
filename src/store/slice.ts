@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Types } from 'modules/create-account';
+import { Types as TypesUserSettingsModal } from 'modules/user-settings-modal';
 
 interface SliceProps {
   user: Types.IForm.IUser;
@@ -59,12 +60,11 @@ const slice = createSlice({
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken || state.refreshToken;
     },
-
     avatarUrlChange(state: SliceProps, { payload }: PayloadAction<{ avatarUrl: Types.IForm.IUser['avatarUrl'] }>) {
       state.user = { ...state.user, avatarUrl: payload.avatarUrl };
     },
-    usernameChange(state: SliceProps, { payload }: PayloadAction<{ username: Types.IForm.IUser['username'] }>) {
-      state.user = { ...state.user, username: payload.username };
+    usernameChange(state: SliceProps, { payload }: PayloadAction<TypesUserSettingsModal.IEntity.UserSettingsModal>) {
+      state.user = { ...state.user, username: payload.username, avatarUrl: payload.avatarUrl };
     },
     settingsModalChange(state: SliceProps) {
       state.settingsModal = !state.settingsModal;
