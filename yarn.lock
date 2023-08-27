@@ -4477,10 +4477,10 @@ aggregate-error@^4.0.0, aggregate-error@^4.0.1:
     clean-stack "^4.0.0"
     indent-string "^5.0.0"
 
-ai-ui-kit@^1.0.17:
-  version "1.0.17"
-  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.17.tgz#0d49d4e560ae04a0164debb6e59a1bf21b7d766d"
-  integrity sha512-UJ6nqcdP3hbl3CUoRE6JUKuj+bsPhT2S9DpOicQvD3DuxVvfZrJjYydOeeaH8yqyeoN4oYzzukK+sUwCStYnHQ==
+ai-ui-kit@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.18.tgz#b99db662c542da46546ab22a3cfdf5e43d2c77d3"
+  integrity sha512-YN6ljQj4IhV8uvYl/W5S49hRLKGeS0+NaXEcrCvYqI7ucl7xHpYmkpDgInq3id6YgdOZpMnNgcnoBYlKjn7q5A==
 
 ajv-formats@^2.1.1:
   version "2.1.1"
@@ -4626,7 +4626,7 @@ ansicolors@~0.3.2:
   resolved "https://registry.npmjs.org/ansicolors/-/ansicolors-0.3.2.tgz#665597de86a9ffe3aa9bfbe6cae5c6ea426b4979"
   integrity sha512-QXu7BPrP29VllRxH8GwB7x5iX5qWKAAMLqKQGWTeLWVlNHNOpVMJ91dsxQAIWXpjuW5wqvxu3Jd/nRjrJ+0pqg==
 
-antd@*, antd@^5.7.1:
+antd@*:
   version "5.7.1"
   resolved "https://registry.npmjs.org/antd/-/antd-5.7.1.tgz#020145a82aaaee25fd879380eb2e1992a732fe89"
   integrity sha512-25L9lbIQMctQVeZq+IdZ0RfYvlrlUkfSsx7JFnFYnqqnhizZXmyV+Vd2nUleJYeFU7pBKfy394I0F/FcHaeKEg==
@@ -4655,6 +4655,60 @@ antd@*, antd@^5.7.1:
     rc-image "~7.0.0"
     rc-input "~1.1.0"
     rc-input-number "~8.0.2"
+    rc-mentions "~2.5.0"
+    rc-menu "~9.10.0"
+    rc-motion "^2.7.3"
+    rc-notification "~5.0.4"
+    rc-pagination "~3.5.0"
+    rc-picker "~3.10.0"
+    rc-progress "~3.4.1"
+    rc-rate "~2.12.0"
+    rc-resize-observer "^1.2.0"
+    rc-segmented "~2.2.0"
+    rc-select "~14.5.0"
+    rc-slider "~10.1.0"
+    rc-steps "~6.0.0"
+    rc-switch "~4.1.0"
+    rc-table "~7.32.1"
+    rc-tabs "~12.9.0"
+    rc-textarea "~1.3.2"
+    rc-tooltip "~6.0.0"
+    rc-tree "~5.7.6"
+    rc-tree-select "~5.9.0"
+    rc-upload "~4.3.0"
+    rc-util "^5.32.0"
+    scroll-into-view-if-needed "^3.0.3"
+    throttle-debounce "^5.0.0"
+
+antd@5.7.0:
+  version "5.7.0"
+  resolved "https://registry.npmjs.org/antd/-/antd-5.7.0.tgz#2762e505c1fad16db871e7133fe551b4946a7089"
+  integrity sha512-jUu6wfoN633rKsTSJcfVtXYTMdVu885LoYm2A52Vur8gnYfP3GzekCuGpTXZKGZRwGLNs3D2HbpaHciusF+2Gg==
+  dependencies:
+    "@ant-design/colors" "^7.0.0"
+    "@ant-design/cssinjs" "^1.10.1"
+    "@ant-design/icons" "^5.1.0"
+    "@ant-design/react-slick" "~1.0.0"
+    "@babel/runtime" "^7.18.3"
+    "@ctrl/tinycolor" "^3.6.0"
+    "@rc-component/color-picker" "~1.4.0"
+    "@rc-component/mutate-observer" "^1.0.0"
+    "@rc-component/tour" "~1.8.0"
+    "@rc-component/trigger" "^1.13.0"
+    classnames "^2.2.6"
+    copy-to-clipboard "^3.2.0"
+    dayjs "^1.11.1"
+    qrcode.react "^3.1.0"
+    rc-cascader "~3.12.0"
+    rc-checkbox "~3.1.0"
+    rc-collapse "~3.7.0"
+    rc-dialog "~9.1.0"
+    rc-drawer "~6.2.0"
+    rc-dropdown "~4.1.0"
+    rc-field-form "~1.34.0"
+    rc-image "~7.0.0-2"
+    rc-input "~1.1.0"
+    rc-input-number "~8.0.0"
     rc-mentions "~2.5.0"
     rc-menu "~9.10.0"
     rc-motion "^2.7.3"
@@ -15105,7 +15159,7 @@ rc-field-form@~1.34.0:
     async-validator "^4.1.0"
     rc-util "^5.32.2"
 
-rc-image@~7.0.0:
+rc-image@~7.0.0, rc-image@~7.0.0-2:
   version "7.0.0"
   resolved "https://registry.npmjs.org/rc-image/-/rc-image-7.0.0.tgz#cad2105dd1708304328bc9c178f7953cb0198403"
   integrity sha512-pOr/LYthg5a+R2LDlFPv8u2ndX4aJQNghWCiWxflmLglC3p0uts/NIWLAituQOKvV1wO1aFI1CZtLMT7jrU3vA==
@@ -15116,6 +15170,17 @@ rc-image@~7.0.0:
     rc-dialog "~9.1.0"
     rc-motion "^2.6.2"
     rc-util "^5.34.1"
+
+rc-input-number@~8.0.0:
+  version "8.0.4"
+  resolved "https://registry.npmjs.org/rc-input-number/-/rc-input-number-8.0.4.tgz#d33cfe4126e10f4771fe11a40797222c76d6598f"
+  integrity sha512-TP+G5b7mZtbwXJ/YEZXF/OgbEZ6iqD4+RSuxZJ8VGKGXDcdt0FKIvpFoNQr/knspdFC4OxA0OfsWfFWfN4XSyA==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    "@rc-component/mini-decimal" "^1.0.1"
+    classnames "^2.2.5"
+    rc-input "~1.1.0"
+    rc-util "^5.28.0"
 
 rc-input-number@~8.0.2:
   version "8.0.3"

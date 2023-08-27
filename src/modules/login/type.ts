@@ -1,6 +1,8 @@
 export namespace IForm {
-  export type ILoginAuth = {
+  export interface ILoginAuth {
     email: string;
     password: string;
-  };
+  }
 }
+
+export namespace IEntity {}

@@ -3,7 +3,7 @@ import { Types } from 'modules/create-account';
 import { Types as TypesUserSettingsModal } from 'modules/user-settings-modal';
 
 interface SliceProps {
-  user: Types.IForm.IUser;
+  user: Types.IEntity.IUser;
   isLogined: boolean;
   isAuthenticated: boolean;
   accessToken: string;
@@ -17,7 +17,7 @@ const initialState: SliceProps = {
     firstName: '',
     lastName: '',
     email: '',
-    avatarUrl: '',
+    photoUrl: '',
     username: '',
     id: NaN,
     password: ''
@@ -34,7 +34,7 @@ const slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginUser(state: SliceProps, { payload }: PayloadAction<{ user: Types.IForm.IUser }>) {
+    loginUser(state: SliceProps, { payload }: PayloadAction<{ user: Types.IEntity.IUser }>) {
       state.user = payload.user;
     },
     isAuthenticatedChange(state: SliceProps) {
@@ -45,7 +45,7 @@ const slice = createSlice({
       state.user = {
         firstName: '',
         email: '',
-        avatarUrl: '',
+        photoUrl: '',
         lastName: '',
         username: '',
         id: NaN,
@@ -60,11 +60,11 @@ const slice = createSlice({
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken || state.refreshToken;
     },
-    avatarUrlChange(state: SliceProps, { payload }: PayloadAction<{ avatarUrl: Types.IForm.IUser['avatarUrl'] }>) {
-      state.user = { ...state.user, avatarUrl: payload.avatarUrl };
+    photoUrlChange(state: SliceProps, { payload }: PayloadAction<{ photoUrl: Types.IEntity.IUser['photoUrl'] }>) {
+      state.user = { ...state.user, photoUrl: payload.photoUrl };
     },
     usernameChange(state: SliceProps, { payload }: PayloadAction<TypesUserSettingsModal.IEntity.UserSettingsModal>) {
-      state.user = { ...state.user, username: payload.username, avatarUrl: payload.avatarUrl };
+      state.user = { ...state.user, username: payload.username, photoUrl: payload.photoUrl };
     },
     settingsModalChange(state: SliceProps) {
       state.settingsModal = !state.settingsModal;
@@ -80,7 +80,7 @@ export const {
   isAuthenticatedChange,
   isReset,
   changeToken,
-  avatarUrlChange,
+  photoUrlChange,
   settingsModalChange,
   firstUsernameChange,
   usernameChange

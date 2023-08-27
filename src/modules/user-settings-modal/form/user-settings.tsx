@@ -36,7 +36,7 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, url }) =
           });
 
           toast.success('Successfully updated');
-          usernameHandler({ username: data.username, avatarUrl: data.photo_url });
+          usernameHandler({ username: data.username, photoUrl: data.photo_url });
         } catch (err) {
           // @ts-ignore
           toast.error(err?.message);

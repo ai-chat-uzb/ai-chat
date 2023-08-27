@@ -6,7 +6,7 @@ export namespace IForm {
 
 export namespace IEntity {
   export interface UserSettingsModal {
-    avatarUrl: string;
+    photoUrl: string;
     username: string;
   }
 }

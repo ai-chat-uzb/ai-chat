@@ -19,7 +19,7 @@ interface LoginAuthProps {
 
 const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) => {
   const data = useForm<IForm.ILoginAuth>({ defaultValues, resolver: yupResolver(loginSchema) });
-  const { token, login } = useAuth();
+  const { token, login, authenticated } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IForm.ILoginAuth> = (e: any) => {
@@ -42,13 +42,14 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
         login({
           firstName: user.data.first_name,
           email: user.data.email,
-          avatarUrl: user.data.photo_url || '',
+          photoUrl: user.data.photo_url,
           lastName: user.data.last_name,
-          username: user.data.username || '',
+          username: user.data.username,
           id: user.data.id,
           password: ''
         });
         toast.success('Success');
+        authenticated();
         navigate('/');
       } catch (err) {
         // @ts-ignore

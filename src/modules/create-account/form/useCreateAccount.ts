@@ -27,7 +27,7 @@
 //           lastName: data.last_name,
 //           id: data.id,
 //           password: data.password,
-//           avatarUrl: '',
+//           photoUrl: '',
 //           username: ''
 //         });
 //         pushQuery({ verification: 'verification' });

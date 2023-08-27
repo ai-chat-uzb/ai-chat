@@ -19,7 +19,7 @@ const AuthQuery = (data: IForm.ICreateAccount) => {
       login({
         firstName: user.data.first_name,
         email: user.data.email,
-        avatarUrl: '',
+        photoUrl: '',
         lastName: user.data.last_name,
         username: '',
         id: user.data.id,

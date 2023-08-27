@@ -3,7 +3,6 @@ import { Types } from 'modules/create-account';
 import { Types as TypesUserSettingsModal } from 'modules/user-settings-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  avatarUrlChange,
   changeToken,
   firstUsernameChange,
   getIsAccessToken,
@@ -16,6 +15,7 @@ import {
   isAuthenticatedChange,
   isReset,
   loginUser,
+  photoUrlChange,
   settingsModalChange,
   usernameChange
 } from 'store/slice';
@@ -35,7 +35,7 @@ const useAuth = () => {
     navigate('/');
   };
 
-  const login = (user: Types.IForm.IUser) => {
+  const login = (user: Types.IEntity.IUser) => {
     dispatch(
       loginUser({
         user
@@ -51,8 +51,8 @@ const useAuth = () => {
     dispatch(isAuthenticatedChange());
   };
 
-  const avatarUrlHandler = (avatarUrl: string) => {
-    dispatch(avatarUrlChange({ avatarUrl }));
+  const photoUrlHandler = (photoUrl: string) => {
+    dispatch(photoUrlChange({ photoUrl }));
   };
   const settingsModalHandler = () => {
     dispatch(settingsModalChange());
@@ -61,8 +61,8 @@ const useAuth = () => {
     dispatch(firstUsernameChange());
   };
 
-  const usernameHandler = ({ username, avatarUrl }: TypesUserSettingsModal.IEntity.UserSettingsModal) => {
-    dispatch(usernameChange({ username, avatarUrl }));
+  const usernameHandler = ({ username, photoUrl }: TypesUserSettingsModal.IEntity.UserSettingsModal) => {
+    dispatch(usernameChange({ username, photoUrl }));
   };
 
   return {
@@ -73,7 +73,7 @@ const useAuth = () => {
     token,
     authenticated,
     login,
-    avatarUrlHandler,
+    photoUrlHandler,
     settingsModalChange,
     settingsModalHandler,
     isSettingsModal,

@@ -17,18 +17,18 @@ interface VerificationProps {
   defaultValues?: IVerification.FormVerification;
 }
 
-const Verification: FC<VerificationProps> = ({ defaultValues, children, onSuccess }) => {
+const Verification: FC<VerificationProps> = ({ defaultValues, children }) => {
   const data = useForm<IVerification.FormVerification>({ defaultValues, resolver: yupResolver(verificationSchema) });
   const { user, authenticated, token, login } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IVerification.FormVerification> = async (e: any) => {
+  const onSubmit: SubmitHandler<IVerification.FormVerification> = async ({ verCode }) => {
     try {
       await axios.post(
         '/verification/',
         {
-          email: user?.email,
-          ver_code: e.verCode
+          email: user.email,
+          ver_code: verCode
         },
         {
           headers: {
@@ -38,7 +38,6 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
       );
 
       toast.success('Success');
-
       navigate('/');
       authenticated();
     } catch (err) {
@@ -54,9 +53,7 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children, onSucces
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers':
-              'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
+            'Content-Type': 'application/json'
           }
         }
       );

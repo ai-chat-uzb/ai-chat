@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { Types } from 'modules/create-account';
 
 interface ProtectRouterProps {
-  user?: Types.IForm.IUser | null;
+  user?: Types.IEntity.IUser;
   navigate: string;
 }
 

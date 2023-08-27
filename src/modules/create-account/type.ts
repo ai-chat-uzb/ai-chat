@@ -7,17 +7,7 @@ export namespace IForm {
     resetPassword: string;
     accessToken?: string;
   };
-  // back
 
-  export interface IUser {
-    firstName: string;
-    email: string;
-    avatarUrl: string;
-    lastName: string;
-    username: string;
-    id: number;
-    password: string;
-  }
   export interface IUserReturn {
     first_name: string;
     email: string;
@@ -25,5 +15,17 @@ export namespace IForm {
     username: string;
     id: number;
     photo_url: string;
+  }
+}
+
+export namespace IEntity {
+  export interface IUser {
+    id: number;
+    password: string;
+    firstName: string;
+    lastName: string;
+    photoUrl: string;
+    username: string;
+    email: string;
   }
 }

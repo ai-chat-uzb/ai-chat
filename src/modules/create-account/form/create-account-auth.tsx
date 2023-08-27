@@ -33,9 +33,7 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
           },
           {
             headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Headers':
-                'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, access-control-allow-methods'
+              'Content-Type': 'application/json'
             }
           }
         );
@@ -43,7 +41,7 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
         login({
           firstName: user.data.first_name,
           email: user.data.email,
-          avatarUrl: '',
+          photoUrl: '',
           lastName: user.data.last_name,
           username: '',
           id: user.data.id,

@@ -79,7 +79,7 @@ const SearchBar: FC<SearchBarProps> = () => {
       </Modal>
       <div className={cls.container} onClick={() => setOpen(!open)}>
         <div className={cls.row}>
-          <Icon name="search" color="--color-black-4" size={20} /> <span>Search</span>
+          <Icon name="search" color="--color-black-4" size={22} /> <span>Search</span>
         </div>
         <div className={cls.keyboard}>⌘ K</div>
       </div>

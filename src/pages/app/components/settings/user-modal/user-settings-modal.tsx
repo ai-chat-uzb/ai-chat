@@ -11,7 +11,7 @@ interface UserSettingsModalProps {}
 
 const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalProps) => {
   const { user, isSettingsModal, settingsModalHandler, isFirstUsernameModal } = useAuth();
-  const [url, setUrl] = useState(user.avatarUrl || '');
+  const [url, setUrl] = useState(user.photoUrl || '');
 
   return (
     <div>
@@ -37,8 +37,8 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(0, 8).map(item => (
-              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
-                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
+              <div key={item.id} onClick={() => setUrl(item.photoUrl)}>
+                <Avatar url={item.photoUrl} status={url === item.photoUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>
@@ -55,8 +55,8 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(8, 16).map(item => (
-              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
-                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
+              <div key={item.id} onClick={() => setUrl(item.photoUrl)}>
+                <Avatar url={item.photoUrl} status={url === item.photoUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>
@@ -67,8 +67,8 @@ const UserSettingsModal: FC<UserSettingsModalProps> = (props: UserSettingsModalP
           </Typography>
           <div className={cls['img-wrap']}>
             {AVATAR_DATA.slice(16, 24).map(item => (
-              <div key={item.id} onClick={() => setUrl(item.avatarUrl)}>
-                <Avatar url={item.avatarUrl} status={url === item.avatarUrl ? 'active' : 'off'} />
+              <div key={item.id} onClick={() => setUrl(item.photoUrl)}>
+                <Avatar url={item.photoUrl} status={url === item.photoUrl ? 'active' : 'off'} />
               </div>
             ))}
           </div>

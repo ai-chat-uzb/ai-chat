@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Button, UserCard } from 'ai-ui-kit/lib/components';
+import { Dropdown, UserCard } from 'ai-ui-kit/lib/components';
+import { MenuProps } from 'antd';
 
 import { useAuth } from 'hooks';
 
@@ -8,28 +9,32 @@ import cls from './user.module.scss';
 interface UserProps {}
 
 const User: FC<UserProps> = () => {
-  const { user, settingsModalHandler } = useAuth();
+  const { user, settingsModalHandler, reset } = useAuth();
+
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: `Settings`,
+      onClick: () => settingsModalHandler()
+    },
+    {
+      key: '2',
+      label: `Log Out`,
+      onClick: () => reset()
+    }
+  ];
 
   return (
     <div className={cls.wrapper}>
       <UserCard
         rightElement={
-          <Button
-            iconName="settings"
-            size="small"
-            colorView="full"
-            view="outline"
-            iconSize={24}
-            htmlType="button"
-            className="custom-user-settings-btn"
-            onClick={() => settingsModalHandler()}
-          />
+          <Dropdown iconName="settings" trigger={['click']} iconSize={24} placement="bottom" menu={{ items }} />
         }
         title={user?.firstName}
         username={`@${user?.username}`}
         status="off"
         size=""
-        url={user.avatarUrl}
+        url={user.photoUrl}
       />
     </div>
   );

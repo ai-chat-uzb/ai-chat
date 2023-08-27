@@ -12,7 +12,7 @@
     box-sizing: border-box;
     position: relative;
     transition: all 0.3s linear;
-    background: transparent;
+    background: rgba(215, 237, 237, 0.08);
     span {
       color: var(--color-black-1);
       text-align: center;
@@ -46,7 +46,7 @@
       padding: 4px 8px;
     }
     &:hover {
-      background: rgba(215, 237, 237, 0.1);
+      background: rgba(215, 237, 237, 0.18);
       &::before {
         opacity: 1;
       }
