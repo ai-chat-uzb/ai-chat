@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
+import { axios } from 'service';
 
 import { useAuth } from 'hooks';
 

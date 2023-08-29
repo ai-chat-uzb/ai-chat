@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { io } from 'socket.io-client';
 import { persistor, store } from 'store/store';
 
 import { App } from './App';
@@ -12,6 +13,10 @@ import { App } from './App';
 // import 'antd/dist/reset.css';
 import 'ai-ui-kit/lib/globals.css';
 import 'ai-ui-kit/lib/index.css';
+
+export const socket = io('http://localhost:4000/', {
+  autoConnect: true
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

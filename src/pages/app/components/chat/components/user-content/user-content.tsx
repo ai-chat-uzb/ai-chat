@@ -1,31 +1,35 @@
 import { FC } from 'react';
 import { UserContent as BaseUserContent } from 'ai-ui-kit/lib/components';
-import { CONTENT_PRIVATE_CHAT } from 'helpers/constants';
 
 import { useAuth } from 'hooks';
 
 import cls from './user-content.module.scss';
 
-interface UserContentProps {}
+export interface UserContentListProps {
+  list: { room: number; author: string; date: string; message: string; photUrl: string }[];
+}
 
-const UserContent: FC<UserContentProps> = () => {
+const UserContent: FC<UserContentListProps> = ({ list }) => {
   const { user } = useAuth();
 
   return (
     <div className={cls.wrapper}>
-      {CONTENT_PRIVATE_CHAT.map((item, index) => (
-        <BaseUserContent
-          key={item.id}
-          userName={item.userName}
-          description={item.description}
-          date={item.date}
-          status="active"
-          url={item.url}
-          author={item.userName === 'xushnud'}
-          chat="private"
-          consecutively={index !== 0 && item.userName === CONTENT_PRIVATE_CHAT[index - 1].userName}
-        />
-      ))}
+      {list
+        ? list.map((item, index) => (
+            <BaseUserContent
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              userName={item.author}
+              description={item.message}
+              date={item.date}
+              status="active"
+              url={item.photUrl}
+              author={item.author === user.username}
+              chat="private"
+              consecutively={index !== 0 && item.author === list[index - 1].author}
+            />
+          ))
+        : 'Empty ❓'}
     </div>
   );
 };

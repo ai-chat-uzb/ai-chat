@@ -1,8 +1,8 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'ai-ui-kit/lib/components';
-import { axios } from 'api';
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form';
+import { axios } from 'service';
 
 import { useAuth } from 'hooks';
 

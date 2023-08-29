@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'ai-ui-kit/lib/components';
-import { axios } from 'api';
+import { axios } from 'service';
 
 import { useAuth } from 'hooks';
 
