@@ -11,7 +11,9 @@ interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = () => {
   const { control, watch } = useForm<Types.IForm.SearchProps>({ defaultValues: { search: '' } });
-  const { users, isLoading } = useSearch({ keyword: watch('search') });
+  const [search, setSearch] = useState('');
+  const { users, isLoading } = useSearch({ keyword: search });
+  const [typingTimeout, setTypingTimeout] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -26,7 +28,22 @@ const SearchBar: FC<SearchBarProps> = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [open, watch('search')]);
+  }, [open]);
+
+  useEffect(() => {
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
+    }
+
+    const newTimeout = setTimeout(() => {
+      setSearch(watch('search'));
+    }, 500);
+
+    // @ts-ignore
+    setTypingTimeout(newTimeout);
+
+    return () => clearTimeout(newTimeout);
+  }, [watch('search')]);
 
   return (
     <div className={cls.wrapper}>
@@ -42,9 +59,9 @@ const SearchBar: FC<SearchBarProps> = () => {
                   users.map((item: any) => (
                     <UserCard
                       key={item.id}
-                      url={item.photo_url}
-                      username={item.username || item.first_name}
-                      title={item.first_name || item.email}
+                      url={item.photoUrl}
+                      username={item.username ? `@${item.username}` : item.email}
+                      title={item.firstName || item.email}
                       size="small"
                       status="off"
                     />
