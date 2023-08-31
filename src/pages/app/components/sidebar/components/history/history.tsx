@@ -15,7 +15,7 @@ const History: FC<HistoryProps> = () => {
     <div className={cls.wrapper}>
       <div className={cls.container}>
         {!isLoading ? (
-          data?.map(({ sentId: { id, photoUrl, username, email, firstName } }) => (
+          data?.map(({ text, sentId: { id, photoUrl, username, email, firstName } }) => (
             <UserCard
               key={id}
               url={photoUrl}
@@ -23,6 +23,8 @@ const History: FC<HistoryProps> = () => {
               title={firstName || email}
               size="small"
               status="off"
+              history={{ text, photoUrl, username }}
+              className="custom-card"
             />
           ))
         ) : (

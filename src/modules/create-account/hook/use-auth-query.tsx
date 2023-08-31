@@ -15,7 +15,6 @@ const AuthQuery = (data: IForm.ICreateAccount) => {
         password: data.password
       });
 
-      console.log('user', user);
       login({
         firstName: user.data.first_name,
         email: user.data.email,
