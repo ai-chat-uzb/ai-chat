@@ -19,6 +19,9 @@
       }
     }
   }
+  :global(.user-card_history-wrapper) {
+    display: none !important;
+  }
 }
 
 :global(.custom-dropdown-menu) {

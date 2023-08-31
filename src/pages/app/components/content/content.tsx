@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, Icons, Tabs } from 'ai-ui-kit/lib/components';
+import { Button, Icons, Input, Tabs } from 'ai-ui-kit/lib/components';
 import { socket } from 'index';
+import { Form } from 'modules/chat-input';
 import moment from 'moment';
 
 import { useAuth } from 'hooks';
 
-import Chat from '../chat/chat';
+import Chat from './chat/chat';
 
 import cls from './content.module.scss';
 
@@ -76,12 +77,26 @@ const Content: FC<ContentProps> = () => {
 
   return (
     <div className={cls.wrapper}>
-      {/* <button onClick={() => reset()}>reset</button> */}
-      <Tabs items={items} activeKey={activeKeys} onChange={tab => setActiveKeys(tab)} />
-      {/* <div className={cls['chat-input']} /> */}
-      <div className={cls['chat-input']}>
-        <input type="text" value={currentMessage} onChange={e => setCurrentMessage(e.target.value)} />
-        <Button children="Submit" size="large" colorView="full" view="line" onClick={sendMessage} />
+      <div className={cls['top-container']}>
+        <Tabs items={items} activeKey={activeKeys} onChange={tab => setActiveKeys(tab)} />
+      </div>
+      <div className={cls['bottom-container']}>
+        <Form.ChatInput defaultValues={{ chatInput: '' }}>
+          {({ control }) => (
+            <div className={cls['chat-input']}>
+              <Input
+                control={control}
+                name="chatInput"
+                type="text"
+                placeholder="You can ask me anything! I am here to help."
+                chat={true}
+              />
+              <Button size="small" colorView="full" view="outline">
+                <Icons name="send" size={36} />
+              </Button>
+            </div>
+          )}
+        </Form.ChatInput>
       </div>
     </div>
   );

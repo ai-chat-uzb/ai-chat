@@ -25,6 +25,7 @@ const History: FC<HistoryProps> = () => {
               status="off"
               history={{ text, photoUrl, username }}
               className="custom-card"
+              onClick={() => console.log(id)}
             />
           ))
         ) : (
