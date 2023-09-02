@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Input, Modal, UserCard } from 'ai-ui-kit/lib/components';
 import Icon from 'ai-ui-kit/lib/components/icon/icon';
-import { Types } from 'modules/search-bar';
-import useSearch from 'modules/search-bar/hooks/useSearch';
+import { useRoom } from 'modules/room/hooks';
+import { Hooks, Types } from 'modules/search-bar';
 import { useForm } from 'react-hook-form';
 
 import cls from './search-bar.module.scss';
@@ -12,7 +12,8 @@ interface SearchBarProps {}
 const SearchBar: FC<SearchBarProps> = () => {
   const { control, watch } = useForm<Types.IForm.SearchProps>({ defaultValues: { search: '' } });
   const [search, setSearch] = useState('');
-  const { users, isLoading } = useSearch({ keyword: search });
+  const { users, isLoading } = Hooks.useSearch({ keyword: search });
+  const { mutate } = useRoom();
   const [typingTimeout, setTypingTimeout] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -56,7 +57,7 @@ const SearchBar: FC<SearchBarProps> = () => {
             {!isLoading ? (
               <div className={cls.lists}>
                 {users?.length > 0 ? (
-                  users.map((item: any) => (
+                  users.map(item => (
                     <UserCard
                       key={item.id}
                       url={item.photoUrl}
@@ -64,6 +65,7 @@ const SearchBar: FC<SearchBarProps> = () => {
                       title={item.firstName || item.email}
                       size="small"
                       status="off"
+                      onClick={() => mutate({ id: item.id })}
                     />
                   ))
                 ) : (

@@ -1,12 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Button, Icons, Input, Tabs } from 'ai-ui-kit/lib/components';
-import { socket } from 'index';
 import { Form } from 'modules/chat-input';
-import moment from 'moment';
 
 import { useAuth } from 'hooks';
-
-import Chat from './chat/chat';
 
 import cls from './content.module.scss';
 
@@ -35,7 +31,7 @@ const Content: FC<ContentProps> = () => {
           <Icons size={20} name="commentCircle" /> <div>Chat</div>
         </>
       ),
-      children: <Chat list={messageList} />
+      children: <h1>hello </h1>
     },
     {
       key: '3',
@@ -47,33 +43,6 @@ const Content: FC<ContentProps> = () => {
       children: `Content of Tab Pane 3`
     }
   ];
-
-  useEffect(() => {
-    socket.emit('join_room', 1);
-  }, []);
-
-  useEffect(() => {
-    socket.on('receive_message', data => {
-      // @ts-ignore
-      setMessageList(list => [...list, data]);
-    });
-  }, [socket]);
-
-  const sendMessage = async () => {
-    if (currentMessage !== '') {
-      const messageData = {
-        room: 1,
-        author: user.username,
-        message: currentMessage,
-        date: moment().clone().format('LLL'),
-        photoUrl: user.photoUrl
-      };
-
-      await socket.emit('send_message', messageData);
-      // @ts-ignore
-      setMessageList(list => [...list, messageData]);
-    }
-  };
 
   return (
     <div className={cls.wrapper}>

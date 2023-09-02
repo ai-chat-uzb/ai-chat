@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { UserCard } from 'ai-ui-kit/lib/components';
 import { useHistory } from 'modules/history/hook';
+import { useRoom } from 'modules/room/hooks';
 
 import loader from 'assets/images/loader/loader.svg';
 
@@ -10,6 +11,7 @@ interface HistoryProps {}
 
 const History: FC<HistoryProps> = () => {
   const { data, isLoading } = useHistory();
+  const { mutate } = useRoom();
 
   return (
     <div className={cls.wrapper}>
@@ -25,7 +27,7 @@ const History: FC<HistoryProps> = () => {
               status="off"
               history={{ text, photoUrl, username }}
               className="custom-card"
-              onClick={() => console.log(id)}
+              onClick={() => mutate({ id })}
             />
           ))
         ) : (
