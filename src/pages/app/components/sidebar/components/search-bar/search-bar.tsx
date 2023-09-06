@@ -1,9 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Input, Modal, UserCard } from 'ai-ui-kit/lib/components';
 import Icon from 'ai-ui-kit/lib/components/icon/icon';
+import Lottie from 'lottie-react-component';
 import { useRoom } from 'modules/room/hooks';
 import { Hooks, Types } from 'modules/search-bar';
 import { useForm } from 'react-hook-form';
+
+import notFoundJson from 'assets/lottie/not-found/not-found.json';
+import searchJson from 'assets/lottie/search/search.json';
 
 import cls from './search-bar.module.scss';
 
@@ -38,13 +42,13 @@ const SearchBar: FC<SearchBarProps> = () => {
 
     const newTimeout = setTimeout(() => {
       setSearch(watch('search'));
-    }, 500);
+    }, 800);
 
     // @ts-ignore
     setTypingTimeout(newTimeout);
 
     return () => clearTimeout(newTimeout);
-  }, [watch('search')]);
+  }, [watch('search'), search]);
 
   return (
     <div className={cls.wrapper}>
@@ -69,28 +73,14 @@ const SearchBar: FC<SearchBarProps> = () => {
                     />
                   ))
                 ) : (
-                  <h1>Not found</h1>
+                  <div className={cls.loader}>
+                    <Lottie animationData={notFoundJson} loop />
+                  </div>
                 )}
               </div>
             ) : (
               <div className={cls.loader}>
-                <svg
-                  className={cls.sharingan}
-                  viewBox="0 0 100 100"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                >
-                  <g className={cls.full_pupille}>
-                    <circle cx="50%" cy="50%" r="30" className={cls.iris} />
-                    <circle cx="50%" cy="50%" r="10" className={cls.pupille} />
-
-                    <text id="irisanomalie" className={cls.irisanomalie} transform="rotate(180 30,8)">
-                      ,
-                    </text>
-                    <use xlinkHref="#irisanomalie" transform="rotate(120 50,50)" />
-                    <use xlinkHref="#irisanomalie" transform="rotate(240 50,50)" />
-                  </g>
-                </svg>
+                <Lottie animationData={searchJson} loop />
               </div>
             )}
           </div>

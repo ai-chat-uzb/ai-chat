@@ -3,7 +3,7 @@ import { UserCard } from 'ai-ui-kit/lib/components';
 import { useHistory } from 'modules/history/hook';
 import { useRoom } from 'modules/room/hooks';
 
-import loader from 'assets/images/loader/loader.svg';
+import HistorySkeleton from '../history-skeleton/history-skeleton';
 
 import cls from './history.module.scss';
 
@@ -31,9 +31,7 @@ const History: FC<HistoryProps> = () => {
             />
           ))
         ) : (
-          <div className={cls.loader}>
-            <img src={loader} alt="loader" className={cls.load} />
-          </div>
+          <HistorySkeleton length={8} />
         )}
       </div>
     </div>

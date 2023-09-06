@@ -12,6 +12,7 @@ import { App } from './App';
 // import 'antd/dist/reset.css';
 import 'ai-ui-kit/lib/globals.css';
 import 'ai-ui-kit/lib/index.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
