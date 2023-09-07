@@ -22,14 +22,14 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
   const { token, login, authenticated } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IForm.ILoginAuth> = (e: any) => {
+  const onSubmit: SubmitHandler<IForm.ILoginAuth> = ({ email, password }) => {
     const res = async () => {
       try {
         const user = await axios.post(
           '/token/',
           {
-            email: e.email,
-            password: e.password
+            email,
+            password
           },
           {
             headers: {
