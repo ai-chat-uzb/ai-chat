@@ -10,7 +10,7 @@ const useSearch = ({ keyword = '' }: Types.IQuery.IQueryRequest): Types.IQuery.I
   const initialData = { users: {} } as Types.IQuery.IQueryResponse;
 
   const { data = initialData, isLoading } = useQuery<Types.IQuery.IQueryResponse, any, Types.IQuery.IQueryResponse>(
-    [`search`, 'lits'],
+    [`search/${keyword}`, 'lits'],
     async () => {
       const { data } = await axiosPrivate.get(`/search_user/`, {
         params: {
