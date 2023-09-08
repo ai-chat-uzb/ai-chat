@@ -1,16 +1,33 @@
 import React, { FC } from 'react';
+import useMessageContext from 'context/hooks/use-message-context';
+import Lottie from 'lottie-react-component';
 
-import { UserContentListProps } from './components/user-content/user-content';
+import emptyJson from 'assets/lottie/empty/empty.json';
+
 import { UserContent } from './components';
 
 import cls from './chat.module.scss';
 
-interface ChatProps extends UserContentListProps {}
+interface ChatProps {}
 
-const Chat: FC<ChatProps> = ({ list }) => (
-  <div className={cls.wrapper}>
-    <UserContent list={list} />
-  </div>
-);
+const Chat: FC<ChatProps> = () => {
+  const { messageHistory, setMessageHistory } = useMessageContext();
+
+  console.log(messageHistory);
+
+  return (
+    <div className={cls.wrapper}>
+      {messageHistory.length > 0 ? (
+        <UserContent list={messageHistory} />
+      ) : (
+        <div className={cls.container}>
+          <div className={cls.row}>
+            <Lottie animationData={emptyJson} loop />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Chat;

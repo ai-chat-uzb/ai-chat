@@ -19,6 +19,14 @@
     border-radius: 24px;
     padding: 0 10px;
     box-sizing: border-box;
+    border-top: 1px solid var(--glass-stroke, rgba(255, 255, 255, 0.08));
+    background: var(
+      --glass-fill,
+      linear-gradient(118deg, rgba(215, 237, 237, 0.06) -47.79%, rgba(204, 235, 235, 0.03) 100%)
+    );
+    /* Glass/Light Effects */
+    box-shadow: 0px 1px 3px 0px rgba(6, 7, 8, 0.05), 0px 1px 2px -1px rgba(6, 7, 8, 0.05),
+      0px 2px 12px 0px rgba(26, 29, 33, 0.64) inset;
   }
   form {
     height: 100%;

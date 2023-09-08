@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Button, Icons, Input, Tabs } from 'ai-ui-kit/lib/components';
 import { Form } from 'modules/chat-input';
 
-import { useAuth } from 'hooks';
+import Chat from './chat/chat';
 
 import cls from './content.module.scss';
 
@@ -10,9 +10,6 @@ interface ContentProps {}
 
 const Content: FC<ContentProps> = () => {
   const [activeKeys, setActiveKeys] = useState('2');
-  const [currentMessage, setCurrentMessage] = useState('');
-  const [messageList, setMessageList] = useState([]);
-  const { user } = useAuth();
 
   const items = [
     {
@@ -31,7 +28,7 @@ const Content: FC<ContentProps> = () => {
           <Icons size={20} name="commentCircle" /> <div>Chat</div>
         </>
       ),
-      children: <h1>hello </h1>
+      children: <Chat />
     },
     {
       key: '3',

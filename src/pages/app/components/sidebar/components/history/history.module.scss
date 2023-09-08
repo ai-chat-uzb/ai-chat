@@ -2,6 +2,9 @@
   width: 100%;
   .container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     :global(.user-card_history-row) {
       width: 100% !important;
     }
