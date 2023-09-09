@@ -24,7 +24,7 @@ const AuthQuery = (data: IForm.ICreateAccount) => {
         id: user.data.id,
         password: ''
       });
-      toast.success('Success');
+      toast.success({ content: 'Authorization completed' });
     } catch (err) {
       console.log(err);
       // @ts-ignore

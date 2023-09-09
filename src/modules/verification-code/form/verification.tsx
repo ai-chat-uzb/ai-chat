@@ -37,7 +37,7 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children }) => {
         }
       );
 
-      toast.success('Success');
+      toast.success({ content: 'Verification code received' });
       navigate('/');
       authenticated();
     } catch (err) {
@@ -59,7 +59,6 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children }) => {
       );
 
       token(data.data.access, data.data.refresh);
-      toast.success('Success');
     } catch (err) {
       // @ts-ignore
       toast.error(err?.message);

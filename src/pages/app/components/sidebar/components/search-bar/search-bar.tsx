@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Input, Modal, UserCard } from 'ai-ui-kit/lib/components';
+import { FC, useEffect, useState } from 'react';
+import { Input, Modal, toast, UserCard } from 'ai-ui-kit/lib/components';
 import Icon from 'ai-ui-kit/lib/components/icon/icon';
 import Lottie from 'lottie-react-component';
 import { useRoom } from 'modules/room/hooks';
@@ -61,15 +61,19 @@ const SearchBar: FC<SearchBarProps> = () => {
             {!isLoading ? (
               <div className={cls.lists}>
                 {users?.length > 0 ? (
-                  users.map(item => (
+                  users.map(({ id, photoUrl, username, email, firstName }) => (
                     <UserCard
-                      key={item.id}
-                      url={item.photoUrl}
-                      username={item.username ? `@${item.username}` : item.email}
-                      title={item.firstName || item.email}
+                      key={id}
+                      url={photoUrl}
+                      username={username ? `@${username}` : email}
+                      title={firstName || email}
                       size="small"
                       status="off"
-                      onClick={() => mutate({ id: item.id })}
+                      onClick={() => {
+                        mutate({ id });
+                        toast.success({ content: `Contact was established with ${username || firstName}` });
+                        setOpen(!open);
+                      }}
                     />
                   ))
                 ) : (

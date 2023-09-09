@@ -26,7 +26,7 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, url }) =
   const { usernameHandler, firstUsernameHandler, user } = useAuth();
 
   const onSubmit: SubmitHandler<IForm.IUserSettings> = ({ username }) => {
-    if (!url) toast.error('Avatar not selected❓');
+    if (!url) toast.error({ content: 'Avatar not selected❓' });
     else {
       const res = async () => {
         try {
@@ -35,7 +35,7 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, url }) =
             photo_url: url
           });
 
-          toast.success('Successfully updated');
+          toast.success({ content: 'Successfully updated' });
           usernameHandler({ username: data.username, photoUrl: data.photo_url });
         } catch (err) {
           // @ts-ignore

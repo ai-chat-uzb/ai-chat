@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { UserCard } from 'ai-ui-kit/lib/components';
+import { toast, UserCard } from 'ai-ui-kit/lib/components';
 import { useHistory } from 'modules/history/hook';
 import { useRoom } from 'modules/room/hooks';
 
@@ -27,7 +27,10 @@ const History: FC<HistoryProps> = () => {
               status="off"
               history={{ text, photoUrl, username }}
               className="custom-card"
-              onClick={() => mutate({ id })}
+              onClick={() => {
+                mutate({ id });
+                toast.success({ content: `Contact was established with ${username || firstName}` });
+              }}
             />
           ))
         ) : (

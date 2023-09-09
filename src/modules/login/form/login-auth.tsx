@@ -48,7 +48,7 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
           id: user.data.id,
           password: ''
         });
-        toast.success('Success');
+        toast.success({ content: 'Login successfully' });
         authenticated();
         navigate('/');
       } catch (err) {

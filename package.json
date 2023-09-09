@@ -16,7 +16,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "ai-ui-kit": "^1.0.22",
+    "ai-ui-kit": "^1.0.23",
     "antd": "5.7.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
