@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-
-export type Message = { user_id: number; message: string };
+import { Types } from 'modules/chat-input';
 
 export interface ContextTypes {
-  messageHistory: Message[] | [];
-  setMessageHistory: Dispatch<SetStateAction<Message[] | []>>;
+  messageHistory: Types.IEntity.Message[] | [];
+  setMessageHistory: Dispatch<SetStateAction<Types.IEntity.Message[] | []>>;
 }

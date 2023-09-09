@@ -11,9 +11,7 @@ import cls from './chat.module.scss';
 interface ChatProps {}
 
 const Chat: FC<ChatProps> = () => {
-  const { messageHistory, setMessageHistory } = useMessageContext();
-
-  console.log(messageHistory);
+  const { messageHistory } = useMessageContext();
 
   return (
     <div className={cls.wrapper}>

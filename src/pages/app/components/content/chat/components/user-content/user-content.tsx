@@ -22,9 +22,9 @@ const UserContent: FC<UserContentListProps> = ({ list }) => {
           date=""
           status="active"
           url=""
-          author={item.user_id === user.id}
+          author={item.userId === user.id}
           chat="private"
-          consecutively={index !== 0 && item.user_id === list[index - 1].user_id}
+          consecutively={index !== 0 && item.userId === list[index - 1].userId}
         />
       ))}
     </div>

@@ -7,7 +7,7 @@ import useWebSocket from 'react-use-websocket';
 import { useAuth } from 'hooks';
 import useQueryParams from 'hooks/use-query-params/use-query-params';
 
-import { Types } from '..';
+import { Mappers, Types } from '..';
 
 type NewType = (data: Types.IEntity.ChatInput) => void;
 
@@ -21,15 +21,15 @@ const ChatInput: FC<ChatInputProps> = ({ onSuccess, children, defaultValues }) =
   const { user } = useAuth();
   const [query] = useQueryParams();
   const { messageHistory, setMessageHistory } = useMessageContext();
-  const { sendJsonMessage, lastJsonMessage } = useWebSocket(`wss://www.2wo1ne.uz/ws/chat/${query?.roomName}/`, {
+  const { sendJsonMessage, lastJsonMessage } = useWebSocket(`wss://www.2wo1ne.uz/ws/chat/${query?.roomId}/`, {
     onOpen: () => '',
-    shouldReconnect: () => !!query.roomName
+    shouldReconnect: () => !!query.roomId
   });
 
   const data = useForm<Types.IEntity.ChatInput>({ defaultValues });
 
   const onSubmit: SubmitHandler<Types.IEntity.ChatInput> = ({ chatInput }) => {
-    if (query.roomName) {
+    if (query.roomId) {
       sendJsonMessage({ user_id: user.id, message: chatInput });
       data.reset();
     } else {
@@ -38,9 +38,16 @@ const ChatInput: FC<ChatInputProps> = ({ onSuccess, children, defaultValues }) =
   };
 
   useEffect(() => {
+    setMessageHistory([]);
+  }, [query?.roomId]);
+
+  useEffect(() => {
     if (lastJsonMessage) {
       // @ts-ignore
-      setMessageHistory([...messageHistory, lastJsonMessage]);
+      const message = Mappers.lastMessage(lastJsonMessage);
+
+      // @ts-ignore
+      setMessageHistory([...messageHistory, message]);
     }
   }, [lastJsonMessage]);
 

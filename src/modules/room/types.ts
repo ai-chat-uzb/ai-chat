@@ -1,6 +1,6 @@
 export namespace IEntity {
   export interface IRoom {
-    roomName: string;
+    roomId: string;
   }
 }
 
