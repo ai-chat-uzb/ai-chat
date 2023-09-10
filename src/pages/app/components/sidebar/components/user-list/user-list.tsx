@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 import { toast, UserCard } from 'ai-ui-kit/lib/components';
-import { useHistory } from 'modules/history/hook';
 import { useRoom } from 'modules/room/hooks';
+import { useList } from 'modules/user-list/hook';
 
 import HistorySkeleton from '../history-skeleton/history-skeleton';
 
-import cls from './history.module.scss';
+import cls from './user-list.module.scss';
 
 interface HistoryProps {}
 
 const History: FC<HistoryProps> = () => {
-  const { data, isLoading } = useHistory();
+  const { data, isLoading } = useList();
   const { mutate } = useRoom();
 
   return (

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography } from 'ai-ui-kit/lib/components';
 
-import { History, SearchBar, User } from './components';
+import { SearchBar, User, UserList } from './components';
 
 import cls from './sidebar.module.scss';
 
@@ -33,7 +33,7 @@ const Sidebar: FC<SidebarProps> = () => (
       color="--color-black-4"
       textAlign="start"
     />
-    <History />
+    <UserList />
   </div>
 );
 
