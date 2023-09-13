@@ -4494,10 +4494,10 @@ aggregate-error@^4.0.0, aggregate-error@^4.0.1:
     clean-stack "^4.0.0"
     indent-string "^5.0.0"
 
-ai-ui-kit@^1.0.23:
-  version "1.0.23"
-  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.23.tgz#e639ef9297e25d1fb264af50db8bc4ab5c234f92"
-  integrity sha512-e6qZTJMQ/lnZs6bab7v0xVr4JH95dz5TfsNZWHR8mMwf16lbQEnE8rXXcm5+DNMCpI1BcbX6t3r2nlJ1lz+kyg==
+ai-ui-kit@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.25.tgz#b4ec02fe7e166e011df428539ebee9337f6930d9"
+  integrity sha512-1u26pEfZ175p31tzWxzp7z3chsA/iczV8s+gWKdappk9szp7oCBxnBZM9FFs4iMrqtI8xsGie8O7o7r8WBv+fw==
 
 ajv-formats@^2.1.1:
   version "2.1.1"
@@ -15564,6 +15564,13 @@ react-hook-form@^7.45.2:
   resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.45.2.tgz#c757f3d5e633ccb186443d57c10fc511df35721a"
   integrity sha512-9s45OdTaKN+4NSTbXVqeDITd/nwIg++nxJGL8+OD5uf1DxvhsXQ641kaYHk5K28cpIOTYm71O/fYk7rFaygb3A==
 
+react-infinite-scroll-component@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz#7e511e7aa0f728ac3e51f64a38a6079ac522407f"
+  integrity sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==
+  dependencies:
+    throttle-debounce "^2.1.0"
+
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -17944,6 +17951,11 @@ throat@^6.0.1:
   version "6.0.2"
   resolved "https://registry.npmjs.org/throat/-/throat-6.0.2.tgz#51a3fbb5e11ae72e2cf74861ed5c8020f89f29fe"
   integrity sha512-WKexMoJj3vEuK0yFEapj8y64V0A6xcuPuK9Gt1d0R+dzCSJc0lHqQytAbSB4cDAK0dWh4T0E2ETkoLE2WZ41OQ==
+
+throttle-debounce@^2.1.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/throttle-debounce/-/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
+  integrity sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==
 
 throttle-debounce@^5.0.0:
   version "5.0.0"

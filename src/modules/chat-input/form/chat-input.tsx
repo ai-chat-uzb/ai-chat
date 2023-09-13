@@ -17,7 +17,7 @@ interface ChatInputProps {
   defaultValues?: Types.IEntity.ChatInput;
 }
 
-const ChatInput: FC<ChatInputProps> = ({ onSuccess, children, defaultValues }) => {
+const ChatInput: FC<ChatInputProps> = ({ children, defaultValues }) => {
   const { user } = useAuth();
   const [query] = useQueryParams();
   const { messageHistory, setMessageHistory } = useMessageContext();
@@ -40,6 +40,8 @@ const ChatInput: FC<ChatInputProps> = ({ onSuccess, children, defaultValues }) =
   useEffect(() => {
     setMessageHistory([]);
   }, [query?.roomId]);
+
+  useEffect(() => {}, [query?.page]);
 
   useEffect(() => {
     if (lastJsonMessage) {

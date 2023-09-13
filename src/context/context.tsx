@@ -7,8 +7,10 @@ export const CreateContext = createContext<ContextTypes | undefined>(undefined);
 
 const Context = ({ children }: { children: ReactNode }) => {
   const [messageHistory, setMessageHistory] = useState<Types.IEntity.Message[] | []>([]);
+  const [count, setCount] = useState(0);
+  const value = { messageHistory, setMessageHistory, count, setCount };
 
-  return <CreateContext.Provider value={{ messageHistory, setMessageHistory }}>{children}</CreateContext.Provider>;
+  return <CreateContext.Provider value={value}>{children}</CreateContext.Provider>;
 };
 
 export default Context;

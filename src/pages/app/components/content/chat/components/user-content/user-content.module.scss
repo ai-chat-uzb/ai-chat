@@ -1,6 +1,8 @@
 .wrapper {
   width: 100%;
   max-width: 100%;
+  height: calc(100vh - 232px);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -10,5 +12,9 @@
   }
   :global(.icon_wrapper) {
     color: var(--color-white) !important;
+  }
+  .chat-message {
+    font-size: 20px;
+    height: 100px;
   }
 }

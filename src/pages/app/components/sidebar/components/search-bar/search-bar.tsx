@@ -6,6 +6,8 @@ import { useRoom } from 'modules/room/hooks';
 import { Hooks, Types } from 'modules/search-bar';
 import { useForm } from 'react-hook-form';
 
+import useQueryParams from 'hooks/use-query-params/use-query-params';
+
 import notFoundJson from 'assets/lottie/not-found/not-found.json';
 import searchJson from 'assets/lottie/search/search.json';
 
@@ -20,6 +22,7 @@ const SearchBar: FC<SearchBarProps> = () => {
   const { mutate } = useRoom();
   const [typingTimeout, setTypingTimeout] = useState(null);
   const [open, setOpen] = useState(false);
+  const [query] = useQueryParams();
 
   useEffect(() => {
     const handleKeyDown = (event: { metaKey: any; ctrlKey: any; key: string }) => {
@@ -69,6 +72,8 @@ const SearchBar: FC<SearchBarProps> = () => {
                       title={firstName || email}
                       size="small"
                       status="off"
+                      type="group"
+                      active={!!(+query?.setId === +id)}
                       onClick={() => {
                         mutate({ id });
                         toast.success({ content: `Contact was established with ${username || firstName}` });

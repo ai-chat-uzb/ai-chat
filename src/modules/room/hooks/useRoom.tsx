@@ -11,7 +11,6 @@ const useRoom = () => {
   const [_, { pushQuery }] = useQueryParams<Types.IEntity.IRoom>();
 
   return useMutation<Types.IEntity.IRoom, string, Types.IQuery.IQueryRequest>(
-    // ['ROOM', id],
     async ({ id }) => {
       const { data } = await axiosPrivate.get(`/chat_room/${id}/`);
 
@@ -19,7 +18,7 @@ const useRoom = () => {
     },
     {
       onSuccess: (data, variables) => {
-        pushQuery(data);
+        pushQuery({ roomId: data.roomId, setId: variables.id });
         queryClient.setQueryData(['ROOM', { id: variables.id }], data);
       },
       onError: error => {

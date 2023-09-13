@@ -6,9 +6,16 @@ export namespace IEntity {
   export interface Message {
     userId: number;
     message: string;
+    id?: 33;
+    sentId?: number;
+    text?: string;
+    timeCreated?: string;
   }
   export interface AllMessage {
     list: Message[];
+  }
+  export interface PageNumber {
+    page: number;
   }
 }
 

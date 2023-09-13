@@ -157,3 +157,5 @@ export const CONTENT_PRIVATE_CHAT = [
     url: 'https://firebasestorage.googleapis.com/v0/b/ai-chat-c50cc.appspot.com/o/avatar-img-1.png?alt=media&token=46ff28a4-e707-477f-b1d4-a646e61b67c4'
   }
 ];
+
+export const NORMAL_FORMAT = 'YYYY-MM-DD, HH:mm';

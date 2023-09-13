@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { axiosPrivate } from 'service/axios';
 
-import { historyList } from '../mappers';
-import { Types } from '..';
+import { Mappers, Types } from '..';
 
-const useHistory = () =>
-  useQuery<Types.IQuery.Response, any, Types.IQuery.Response>(['history', 'list'], async () => {
+const useUserList = () =>
+  useQuery<Types.IQuery.Response, any, Types.IQuery.Response>(['users', 'list'], async () => {
     const { data } = await axiosPrivate.get('/history');
 
-    return historyList(data);
+    return Mappers.userList(data);
   });
 
-export default useHistory;
+export default useUserList;

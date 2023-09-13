@@ -2,7 +2,7 @@ import get from 'lodash.get';
 
 import { Types } from '.';
 
-const history = (item: Types.IApi.IHistoryResponse): Types.IEntity.IHistory => ({
+const user = (item: Types.IApi.IHistoryResponse): Types.IEntity.IHistory => ({
   id: get(item, 'id'),
   text: get(item, 'text'),
   timeCreated: get(item, 'time_created'),
@@ -26,4 +26,4 @@ const history = (item: Types.IApi.IHistoryResponse): Types.IEntity.IHistory => (
   }
 });
 
-export const historyList = (data: Types.IApi.Response): Types.IEntity.IHistoryList => (data || []).map(history);
+export const userList = (data: Types.IApi.Response): Types.IEntity.IHistoryList => (data || []).map(user);

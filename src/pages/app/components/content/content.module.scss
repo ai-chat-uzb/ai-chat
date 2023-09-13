@@ -40,7 +40,7 @@
   }
   :global(.ant-tabs-content-holder) {
     height: calc(100vh - 208px);
-    overflow-y: auto;
+    // overflow-y: auto;
     &::-webkit-scrollbar {
       display: none;
     }
