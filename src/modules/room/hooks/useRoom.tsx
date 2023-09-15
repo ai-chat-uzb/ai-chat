@@ -21,9 +21,8 @@ const useRoom = () => {
         pushQuery({ roomId: data.roomId, setId: variables.id });
         queryClient.setQueryData(['ROOM', { id: variables.id }], data);
       },
-      onError: error => {
-        // @ts-ignore
-        toast.error(error.message);
+      onError: (error: any) => {
+        toast.error({ content: error.message });
       }
     }
   );

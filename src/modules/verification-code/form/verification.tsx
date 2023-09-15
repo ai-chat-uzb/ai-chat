@@ -40,9 +40,8 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children }) => {
       toast.success({ content: 'Verification code received' });
       navigate('/');
       authenticated();
-    } catch (err) {
-      // @ts-ignore
-      toast.error(err?.message);
+    } catch (err: any) {
+      toast.error({ content: err?.message });
     }
     try {
       const data = await axios.post(
@@ -59,9 +58,8 @@ const Verification: FC<VerificationProps> = ({ defaultValues, children }) => {
       );
 
       token(data.data.access, data.data.refresh);
-    } catch (err) {
-      // @ts-ignore
-      toast.error(err?.message);
+    } catch (err: any) {
+      toast.error({ content: err?.message });
     }
     login({ ...user, password: '' });
   };

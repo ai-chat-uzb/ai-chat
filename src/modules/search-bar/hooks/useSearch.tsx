@@ -21,8 +21,8 @@ const useSearch = ({ keyword = '' }: Types.IQuery.IQueryRequest): Types.IQuery.I
       return Mappers.SearchList(data);
     },
     {
-      onError: err => {
-        toast.error(err);
+      onError: (err: any) => {
+        toast.error({ content: err.message });
       }
     }
   );

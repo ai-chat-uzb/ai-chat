@@ -23,7 +23,7 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, url }) =
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const data = useForm({ defaultValues, resolver: yupResolver(userSettings) });
-  const { usernameHandler, firstUsernameHandler, user } = useAuth();
+  const { usernameHandler, firstUsernameHandler, user, settingsModalHandler } = useAuth();
 
   const onSubmit: SubmitHandler<IForm.IUserSettings> = ({ username }) => {
     if (!url) toast.error({ content: 'Avatar not selected❓' });
@@ -37,9 +37,12 @@ const UserSettings: FC<UserSettingsProps> = ({ defaultValues, children, url }) =
 
           toast.success({ content: 'Successfully updated' });
           usernameHandler({ username: data.username, photoUrl: data.photo_url });
-        } catch (err) {
-          // @ts-ignore
-          toast.error(err?.message);
+          settingsModalHandler();
+        } catch (err: any) {
+          toast.warning({
+            content: err?.response.status === 404 ? 'This Nickname is already selected' : err?.message,
+            duration: 3
+          });
           navigate('/login', { state: { from: location }, replace: true });
         }
       };

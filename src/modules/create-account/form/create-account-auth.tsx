@@ -49,9 +49,8 @@ const CreateAccountAuth: FC<CreateAccountAuthProps> = ({ children, defaultValues
         });
         toast.success({ content: 'Authorization completed' });
         onSuccess(true);
-      } catch (err) {
-        // @ts-ignore
-        toast.error(err?.message);
+      } catch (err: any) {
+        toast.error({ content: err?.message });
       }
     };
 

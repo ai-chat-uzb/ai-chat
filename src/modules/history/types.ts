@@ -7,10 +7,7 @@ export namespace IEntity {
     timeCreated: string;
   }
   export interface GeneralHistory {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: History[];
+    items: History[];
   }
   export interface PaginationKey {
     id: number;
@@ -18,22 +15,15 @@ export namespace IEntity {
 }
 
 export namespace IApi {
-  export interface Result {
-    id: 33;
-    owner_id: number;
-    sent_id: number;
-    message: string;
-    time_created: string;
-  }
-
   export interface Request {
     sent_id: number;
   }
 
   export interface Response {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: Result[];
+    id: 33;
+    owner_id: number;
+    sent_id: number;
+    message: string;
+    time_created: string;
   }
 }

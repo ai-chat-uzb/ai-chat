@@ -51,9 +51,8 @@ const LoginAuth: FC<LoginAuthProps> = ({ children, defaultValues, onSuccess }) =
         toast.success({ content: 'Login successfully' });
         authenticated();
         navigate('/');
-      } catch (err) {
-        // @ts-ignore
-        toast.error(err?.message);
+      } catch (err: any) {
+        toast.error({ content: err?.message });
       }
     };
 
