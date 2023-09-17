@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { UserContent as BaseUserContent } from 'ai-ui-kit/lib/components';
 import useMessageContext from 'context/hooks/use-message-context';
 import { NORMAL_FORMAT } from 'helpers/constants';
@@ -17,12 +17,28 @@ interface ChatProps {}
 
 const Chat: FC<ChatProps> = () => {
   const { user } = useAuth();
-  const { messageHistory } = useMessageContext();
+  const { messageHistory, setMessageHistory } = useMessageContext();
   const [query] = useQueryParams();
 
-  useHistory();
+  const messagesEndRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {}, [query?.roomId]);
+  const scrollToBottom = () => {
+    messagesEndRef?.current?.scrollIntoView({ behavior: 'instant' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messageHistory]);
+
+  const { mutate } = useHistory();
+
+  useEffect(() => {
+    setMessageHistory([]);
+    if (query?.roomId) {
+      mutate({ id: +query?.setId });
+    }
+  }, [query?.roomId]);
+  useEffect(() => {}, [messageHistory]);
 
   return (
     <div className={cls.wrapper}>
@@ -32,6 +48,7 @@ const Chat: FC<ChatProps> = () => {
             <BaseUserContent
               // eslint-disable-next-line react/no-array-index-key
               key={index}
+              // id={messageHistory.length === index - 1 && 'ContainerElementID'}
               userName={user.username}
               description={item.message}
               date={item.timeCreated ? moment(item.timeCreated).clone().format(NORMAL_FORMAT) : ''}
@@ -42,6 +59,7 @@ const Chat: FC<ChatProps> = () => {
               consecutively={index !== 0 && item.userId === messageHistory[index - 1].userId}
             />
           ))}
+          <span ref={messagesEndRef} />
         </div>
       ) : (
         <div className={cls.container}>

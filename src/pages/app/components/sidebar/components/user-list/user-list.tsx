@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { toast, UserCard } from 'ai-ui-kit/lib/components';
+import { UserCard } from 'ai-ui-kit/lib/components';
 import { useRoom } from 'modules/room/hooks';
 import { useList } from 'modules/user-list/hook';
 
@@ -20,7 +20,7 @@ const History: FC<HistoryProps> = () => {
     <div className={cls.wrapper}>
       <div className={cls.container}>
         {!isLoading ? (
-          data?.map(({ text, sentId: { id, photoUrl, username, email, firstName } }) => (
+          data?.map(({ text, contact: { id, photoUrl, username, email, firstName } }) => (
             <UserCard
               key={id}
               url={photoUrl}
@@ -34,7 +34,6 @@ const History: FC<HistoryProps> = () => {
               type="group"
               onClick={() => {
                 mutate({ id });
-                toast.success({ content: `Contact was established with ${username || firstName}` });
               }}
             />
           ))

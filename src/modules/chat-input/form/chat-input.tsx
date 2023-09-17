@@ -37,9 +37,9 @@ const ChatInput: FC<ChatInputProps> = ({ children, defaultValues }) => {
     }
   };
 
-  useEffect(() => {
-    setMessageHistory([]);
-  }, [query?.roomId]);
+  // useEffect(() => {
+  //   setMessageHistory([]);
+  // }, [query?.roomId]);
 
   useEffect(() => {}, [query?.page]);
 

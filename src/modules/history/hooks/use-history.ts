@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import useMessageContext from 'context/hooks/use-message-context';
 import { axiosPrivate } from 'service/axios';
 
@@ -10,9 +10,10 @@ import { Mappers, Types } from '..';
 const useHistory = () => {
   const [query] = useQueryParams();
   const { messageHistory, setMessageHistory } = useMessageContext();
+  const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery<Types.IEntity.GeneralHistory, string, Types.IEntity.GeneralHistory>(
-    ['history', `roomId=${query?.roomId}`],
+    ['history', `${query?.roomId}`],
     async () => {
       const { data } = await axiosPrivate.get(`contact/${query?.setId}/`);
 
@@ -29,27 +30,25 @@ const useHistory = () => {
     }
   }, [isLoading]);
 
-  // return useMutation<Types.IEntity.GeneralHistory, string, Types.IEntity.PaginationKey>(
-  //   async ({ id }: { id: number }) => {
-  //     const { data } = await axiosPrivate.get(`contact/${query?.setId}/?page=${id || 1}`);
+  return useMutation<Types.IEntity.GeneralHistory, string, Types.IEntity.PaginationKey>(
+    async ({ id }) => {
+      const { data } = await axiosPrivate.get(`contact/${id}/`);
 
-  //     return Mappers.generalHistory(data);
-  //   },
-  //   {
-  //     onSuccess: (data, variables) => {
-  //       queryClient.setQueryData(['history', variables.id], data);
-  //       if (data?.results && messageHistory.length <= data.count) {
-  //         setMessageHistory([...data?.results!, ...messageHistory]);
-  //         setCount(paginationCount(data.count));
-  //         console.log([...data?.results!, ...messageHistory]);
-  //       }
-  //     },
-  //     onError: error => {
-  //       // @ts-ignore
-  //       toast.error(error.message);
-  //     }
-  //   }
-  // );
+      return Mappers.generalHistory(data);
+    },
+    {
+      onSuccess: (data, variables) => {
+        queryClient.setQueryData(['history', variables.id], data);
+        if (data?.items) {
+          setMessageHistory([...data?.items!, ...messageHistory]);
+        }
+      },
+      onError: error => {
+        // @ts-ignore
+        toast.error(error.message);
+      }
+    }
+  );
 };
 
 export default useHistory;

@@ -1,40 +1,29 @@
 import { Types } from 'modules/create-account';
 
 export namespace IEntity {
-  export interface IHistory {
+  export interface IUser {
     id: number;
     text: string;
     timeCreated: string;
-    ownerId: Omit<Types.IEntity.IUser, 'password'> & { lastLogin: string };
-    sentId: Omit<Types.IEntity.IUser, 'password'> & { lastLogin: string };
+    contact: Omit<Types.IEntity.IUser, 'password'> & { lastLogin: string };
   }
 
-  export type IHistoryList = IHistory[];
+  export type IUserList = IUser[];
 }
 
 export namespace IQuery {
   export interface Request {}
-  export interface Response extends IEntity.IHistoryList {}
+  export interface Response extends IEntity.IUserList {}
 }
 
 export namespace IApi {
   export interface Request {}
 
-  export interface IHistoryResponse {
+  export interface IUserResponse {
     id: number;
     text: string;
     time_created: string;
-    owner_id: {
-      id: number;
-      email: string;
-      last_login: string;
-      first_name: string;
-      last_name: string;
-      photo_url: string;
-      icon_id: string;
-      username: string;
-    };
-    sent_id: {
+    contact: {
       id: number;
       email: string;
       last_login: string;
@@ -47,7 +36,7 @@ export namespace IApi {
   }
 
   export interface Response {
-    map(history: (item: IHistoryResponse) => IEntity.IHistory): IEntity.IHistoryList;
-    items: IHistoryResponse[];
+    map(history: (item: IUserResponse) => IEntity.IUser): IEntity.IUserList;
+    items: IUserResponse[];
   }
 }
