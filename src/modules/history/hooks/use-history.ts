@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'ai-ui-kit/lib/components';
 import useMessageContext from 'context/hooks/use-message-context';
 import { axiosPrivate } from 'service/axios';
 
@@ -12,24 +12,6 @@ const useHistory = () => {
   const { messageHistory, setMessageHistory } = useMessageContext();
   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery<Types.IEntity.GeneralHistory, string, Types.IEntity.GeneralHistory>(
-    ['history', `${query?.roomId}`],
-    async () => {
-      const { data } = await axiosPrivate.get(`contact/${query?.setId}/`);
-
-      return Mappers.generalHistory(data);
-    },
-    {
-      enabled: !!(query.setId && query.roomId)
-    }
-  );
-
-  useEffect(() => {
-    if (data?.items) {
-      setMessageHistory([...data?.items!, ...messageHistory]);
-    }
-  }, [isLoading]);
-
   return useMutation<Types.IEntity.GeneralHistory, string, Types.IEntity.PaginationKey>(
     async ({ id }) => {
       const { data } = await axiosPrivate.get(`contact/${id}/`);
@@ -40,12 +22,11 @@ const useHistory = () => {
       onSuccess: (data, variables) => {
         queryClient.setQueryData(['history', variables.id], data);
         if (data?.items) {
-          setMessageHistory([...data?.items!, ...messageHistory]);
+          setMessageHistory([...data?.items!]);
         }
       },
-      onError: error => {
-        // @ts-ignore
-        toast.error(error.message);
+      onError: (error: any) => {
+        toast.error({ content: error.message });
       }
     }
   );

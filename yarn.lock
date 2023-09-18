@@ -4501,10 +4501,10 @@ aggregate-error@^4.0.0, aggregate-error@^4.0.1:
     clean-stack "^4.0.0"
     indent-string "^5.0.0"
 
-ai-ui-kit@^1.0.25:
-  version "1.0.25"
-  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.25.tgz#b4ec02fe7e166e011df428539ebee9337f6930d9"
-  integrity sha512-1u26pEfZ175p31tzWxzp7z3chsA/iczV8s+gWKdappk9szp7oCBxnBZM9FFs4iMrqtI8xsGie8O7o7r8WBv+fw==
+ai-ui-kit@^1.0.26:
+  version "1.0.26"
+  resolved "https://registry.npmjs.org/ai-ui-kit/-/ai-ui-kit-1.0.26.tgz#0baa105e0326f1f2f09e26c5e324c9a5bbad3d27"
+  integrity sha512-eF4ED48zmBdX5EQCpeKBmPOv/JZ0oHjfAxMF1T9pi7aMm7OPhUCmX8i4Mv+Y7dptt73Ili7rpdGXuC8to4Zv9A==
 
 ajv-formats@^2.1.1:
   version "2.1.1"
